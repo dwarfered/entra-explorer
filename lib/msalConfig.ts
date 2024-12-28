@@ -7,7 +7,7 @@ import {
 
 export const msalConfig: Configuration = {
   auth: {
-    clientId: "87f8596c-887d-4280-88f0-821ec093d04e", // your app reg (clientId)
+    clientId: "b8b844ef-4c33-4f56-8e65-414f4bdc59bd", // your app reg (clientId)
     authority: "https://login.microsoftonline.com/common", // common (multi-tenant app) or your tenantId
     redirectUri: "/",
     postLogoutRedirectUri: "/",
@@ -46,7 +46,7 @@ export const msalConfig: Configuration = {
 
 // Add here scopes for id token to be used at MS Identity Platform endpoints.
 export const loginRequest: PopupRequest = {
-  scopes: ["User.Read"],
+  scopes: ["User.Read", "Application.Read.All"],
 };
 
 // Add here the endpoints for MS Graph API services you would like to use.
