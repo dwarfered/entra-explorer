@@ -57,12 +57,12 @@ export default function NavMenu() {
                 icon={<AppsListRegular />}
                 expandIconPosition="end"
               >
-                <Body1Strong>Enterprise Apps</Body1Strong>
+                <Body1Strong>App Registrations</Body1Strong>
               </AccordionHeader>
               <AccordionPanel>
                 <Button
                   icon={
-                    pathname === "/profile" ? (
+                    pathname === "/app-registrations/credential-status" ? (
                       <DividerTallFilled
                         style={{
                           transform: "scaleX(2)",
@@ -70,17 +70,17 @@ export default function NavMenu() {
                       />
                     ) : undefined
                   }
-                  onClick={() => router.push("/profile")}
+                  onClick={() => router.push("/app-registrations/credential-status")}
                   shape="square"
                   appearance="subtle"
                   style={{
                     width: "100%",
                     justifyContent: "flex-start",
                     display: "flex",
-                    ...(pathname === "/profile" ? activeStyle : {}),
+                    ...(pathname === "/app-registrations/credential-status" ? activeStyle : {}),
                   }}
                 >
-                  <Body1>App Role Assignments</Body1>
+                  <Body1>Credential Status</Body1>
                 </Button>
               </AccordionPanel>
             </AccordionItem>
