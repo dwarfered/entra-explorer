@@ -57,7 +57,7 @@ export default function NavMenu() {
                 icon={<AppsListRegular />}
                 expandIconPosition="end"
               >
-                <Body1Strong>Quickstart</Body1Strong>
+                <Body1Strong>Enterprise Apps</Body1Strong>
               </AccordionHeader>
               <AccordionPanel>
                 <Button
@@ -80,7 +80,7 @@ export default function NavMenu() {
                     ...(pathname === "/profile" ? activeStyle : {}),
                   }}
                 >
-                  <Body1>My profile</Body1>
+                  <Body1>App Role Assignments</Body1>
                 </Button>
               </AccordionPanel>
             </AccordionItem>
