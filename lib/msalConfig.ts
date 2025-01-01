@@ -54,6 +54,8 @@ export const graphConfig = {
   graphMeEndpoint: "https://graph.microsoft.com/v1.0/me",
   graphMePhotoEndpoint:
     "https://graph.microsoft.com/v1.0/me/photos/48x48/$value",
+    graphAppCredentialsEndpoint:
+    "https://graph.microsoft.com/v1.0/applications?$select=appId,displayName,keyCredentials,passwordCredentials&$top=999",
 };
 
 export const msalInstance = new PublicClientApplication(msalConfig);
