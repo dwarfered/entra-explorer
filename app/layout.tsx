@@ -25,7 +25,7 @@ const useStyles = makeStyles({
   content: {},
   container: {
     height: "calc(100vh - 40px - 20px)",
-    overflow: "scroll",
+    overflow: "hidden",
     ...shorthands.margin("10px"),
     flexGrow: 1,
   },
