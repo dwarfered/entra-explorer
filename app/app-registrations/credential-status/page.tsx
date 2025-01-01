@@ -1,5 +1,6 @@
 "use client";
 
+import CredentialStatusGrid from "@/components/app-registrations/CredentialStatusGrid";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -8,7 +9,6 @@ import {
   Title3,
   makeStyles,
   shorthands,
-  Body1,
 } from "@fluentui/react-components";
 
 const useStyles = makeStyles({
@@ -31,7 +31,7 @@ export default function CredentialStatus() {
         </BreadcrumbItem>
       </Breadcrumb>
       <Title3 className={styles.toolbar}>Credential Status</Title3>
-      {/* <CredentialStatusGrid /> */}
+      <CredentialStatusGrid />
     </>
   );
 }
