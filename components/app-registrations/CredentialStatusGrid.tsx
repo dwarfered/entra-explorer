@@ -18,7 +18,7 @@ import { useIsAuthenticated } from "@azure/msal-react";
 import { useState, useMemo } from "react";
 import useSWR from "swr";
 
-import { Application, generateApplications } from "./data-model";
+import { Application, generateApplications } from "./CredentialStatusGrid.data-model";
 import { credentialStatusColumns } from "./CredentialStatusGrid.columns";
 import { fetcher, ODataResponse } from "@/lib/utils/msGraphFetcher";
 import { graphConfig } from "@/lib/msalConfig";
