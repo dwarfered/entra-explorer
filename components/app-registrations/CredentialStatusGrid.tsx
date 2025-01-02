@@ -165,9 +165,9 @@ export default function CredentialStatusGrid() {
         </div>
       )}
 
-      <Body1 style={{ margin: "6px" }}>
-        {filteredItems.length} App Registrations with credentials.
-      </Body1>
+      {/* <Body1 style={{ margin: "6px" }}>
+        {filteredItems.length} App Registrations with certificates & secrets.
+      </Body1> */}
 
       <div style={{ margin: "6px" }}>
         <Input
