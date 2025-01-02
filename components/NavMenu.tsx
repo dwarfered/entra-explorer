@@ -62,7 +62,7 @@ export default function NavMenu() {
               <AccordionPanel>
                 <Button
                   icon={
-                    pathname === "/app-registrations/credential-status" ? (
+                    pathname === "/app-registrations/certificates-and-secrets" ? (
                       <DividerTallFilled
                         style={{
                           transform: "scaleX(2)",
@@ -70,17 +70,17 @@ export default function NavMenu() {
                       />
                     ) : undefined
                   }
-                  onClick={() => router.push("/app-registrations/credential-status")}
+                  onClick={() => router.push("/app-registrations/certificates-and-secrets")}
                   shape="square"
                   appearance="subtle"
                   style={{
                     width: "100%",
                     justifyContent: "flex-start",
                     display: "flex",
-                    ...(pathname === "/app-registrations/credential-status" ? activeStyle : {}),
+                    ...(pathname === "/app-registrations/certificates-and-secrets" ? activeStyle : {}),
                   }}
                 >
-                  <Body1>Credential Status</Body1>
+                  <Body1>Certificates & secrets</Body1>
                 </Button>
               </AccordionPanel>
             </AccordionItem>
