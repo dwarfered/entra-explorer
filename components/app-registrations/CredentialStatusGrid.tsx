@@ -1,8 +1,6 @@
 "use client";
 
-import {
-  SearchRegular,
-} from "@fluentui/react-icons";
+import { SearchRegular } from "@fluentui/react-icons";
 import {
   Body1,
   DataGrid,
@@ -20,8 +18,7 @@ import { useIsAuthenticated } from "@azure/msal-react";
 import { useState, useMemo } from "react";
 import useSWR from "swr";
 
-import { Application } from "./data-model";
-import { sampleItems } from "./sample-data";
+import { Application, generateApplications } from "./data-model";
 import { credentialStatusColumns } from "./CredentialStatusGrid.columns";
 import { fetcher, ODataResponse } from "@/lib/utils/msGraphFetcher";
 import { graphConfig } from "@/lib/msalConfig";
@@ -36,56 +33,63 @@ function useFilteredCredentials(
   searchTerm: string
 ) {
   return useMemo(() => {
+    const normalizedSearchTerm = searchTerm.toLowerCase();
+    const nowUtc = new Date();
+    const futureUtc = new Date(nowUtc);
+    futureUtc.setFullYear(futureUtc.getFullYear() + 2);
+    const warningUtc = new Date(nowUtc);
+    warningUtc.setMonth(warningUtc.getMonth() + 2);
+
+    const processApplications = (applications: Application[]) =>
+      applications
+        .filter(
+          (element) =>
+            element.keyCredentials.length > 0 ||
+            element.passwordCredentials.length > 0
+        )
+        .map((app) => ({
+          ...app,
+          activeKeyCredentials: app.keyCredentials.filter(
+            (x) => new Date(x.endDateTime) > nowUtc
+          ),
+          activePasswordCredentials: app.passwordCredentials.filter(
+            (x) => new Date(x.endDateTime) > nowUtc
+          ),
+          expiredKeyCredentials: app.keyCredentials.filter(
+            (x) => new Date(x.endDateTime) <= nowUtc
+          ),
+          expiredPasswordCredentials: app.passwordCredentials.filter(
+            (x) => new Date(x.endDateTime) <= nowUtc
+          ),
+          longLivedKeyCredentials: app.keyCredentials.filter(
+            (x) => new Date(x.endDateTime) >= futureUtc
+          ),
+          longLivedPasswordCredentials: app.passwordCredentials.filter(
+            (x) => new Date(x.endDateTime) >= futureUtc
+          ),
+          warningKeyCredentials: app.keyCredentials.filter(
+            (x) =>
+              new Date(x.endDateTime) >= nowUtc &&
+              new Date(x.endDateTime) <= warningUtc
+          ),
+          warningPasswordCredentials: app.passwordCredentials.filter(
+            (x) =>
+              new Date(x.endDateTime) >= nowUtc &&
+              new Date(x.endDateTime) <= warningUtc
+          ),
+        }))
+        .filter((item) =>
+          item.displayName.toLowerCase().startsWith(normalizedSearchTerm)
+        );
+
     if (!isAuthenticated) {
-      return sampleItems.filter((item) =>
-        item.displayName.toLowerCase().startsWith(searchTerm.toLowerCase())
-      );
+      const applications = generateApplications();
+      return processApplications(applications);
     }
+
     if (!data) return [];
 
-    const nowUtc = new Date();
-    const futureUtc = new Date(nowUtc.getFullYear() + 2, nowUtc.getMonth());
-    const warningUtc = new Date(nowUtc.getFullYear(), nowUtc.getMonth() + 2);
-
-    return data
-      .filter(
-        (app) =>
-          app.keyCredentials.length > 0 || app.passwordCredentials.length > 0
-      )
-      .map((app) => ({
-        ...app,
-        activeKeyCredentials: app.keyCredentials.filter(
-          (x) => new Date(x.endDateTime) > nowUtc
-        ),
-        activePasswordCredentials: app.passwordCredentials.filter(
-          (x) => new Date(x.endDateTime) > nowUtc
-        ),
-        expiredKeyCredentials: app.keyCredentials.filter(
-          (x) => new Date(x.endDateTime) <= nowUtc
-        ),
-        expiredPasswordCredentials: app.passwordCredentials.filter(
-          (x) => new Date(x.endDateTime) <= nowUtc
-        ),
-        longLivedKeyCredentials: app.keyCredentials.filter(
-          (x) => new Date(x.endDateTime) > futureUtc
-        ),
-        longLivedPasswordCredentials: app.passwordCredentials.filter(
-          (x) => new Date(x.endDateTime) > futureUtc
-        ),
-        warningKeyCredentials: app.keyCredentials.filter(
-          (x) =>
-            new Date(x.endDateTime) >= nowUtc &&
-            new Date(x.endDateTime) <= warningUtc
-        ),
-        warningPasswordCredentials: app.passwordCredentials.filter(
-          (x) =>
-            new Date(x.endDateTime) >= nowUtc &&
-            new Date(x.endDateTime) <= warningUtc
-        ),
-      }))
-      .filter((item) =>
-        item.displayName.toLowerCase().startsWith(searchTerm.toLowerCase())
-      );
+    return processApplications(data);
   }, [isAuthenticated, data, searchTerm]);
 }
 
