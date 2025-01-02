@@ -158,7 +158,7 @@ export const credentialStatusColumns = (
 
       return earliestA.getTime() - earliestB.getTime();
     },
-    renderHeaderCell: () => "Expiry Warning",
+    renderHeaderCell: () => "Near Expiry",
     renderCell: (item) => {
       const warningDates = getWarningDates(item);
       const expiringCount = warningDates.length;
