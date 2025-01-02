@@ -5,7 +5,7 @@ import {
   createTableColumn,
   tokens,
 } from "@fluentui/react-components";
-import { GridItem } from "./data-model";
+import { GridItem } from "./CredentialStatusGrid.data-model";
 import {
   CheckmarkCircleFilled,
   ErrorCircleFilled,
