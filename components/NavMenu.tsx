@@ -50,7 +50,7 @@ export default function NavMenu() {
         </Button>
         <Divider />
 
-        <AuthenticatedTemplate>
+        {/* <AuthenticatedTemplate> */}
           <Accordion defaultOpenItems="1">
             <AccordionItem value="1">
               <AccordionHeader
@@ -85,7 +85,7 @@ export default function NavMenu() {
               </AccordionPanel>
             </AccordionItem>
           </Accordion>
-        </AuthenticatedTemplate>
+        {/* </AuthenticatedTemplate> */}
       </ToolbarGroup>
       <ToolbarGroup role="presentation"></ToolbarGroup>
     </Toolbar>
