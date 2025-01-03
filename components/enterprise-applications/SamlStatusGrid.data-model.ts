@@ -32,5 +32,11 @@ export function generateSamlStatus(): SamlStatus[] {
       id: "aws-id",
       preferredTokenSigningKeyEndDateTime: twoYearsFromNow.toISOString()
     },
+    {
+        appDisplayName: "Workday",
+        appId: "workday-id",
+        id: "worday-id",
+        preferredTokenSigningKeyEndDateTime: now.toISOString()
+      },
   ];
 }
