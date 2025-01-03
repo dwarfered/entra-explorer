@@ -22,9 +22,9 @@ export async function fetcher(...args: Parameters<typeof fetch>) {
   };
   args.push(options);
 
-  const response = await fetch(...args).catch((e) => {
-    if (e instanceof InteractionRequiredAuthError) {
-      msalInstance.acquireTokenPopup({
+  const response = await fetch(...args).catch((error) => {
+    if (error instanceof InteractionRequiredAuthError) {
+      msalInstance.acquireTokenRedirect({
         ...loginRequest,
         account: msalInstance.getActiveAccount() as AccountInfo,
       });
