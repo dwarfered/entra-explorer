@@ -1,4 +1,5 @@
 import { loginRequest, msalInstance } from "@/lib/msalConfig";
+import { InteractionRequiredAuthError } from "@azure/msal-browser";
 
 export async function acquireGraphAccessToken() {
   const account = msalInstance.getActiveAccount();
@@ -15,11 +16,11 @@ export async function acquireGraphAccessToken() {
     });
     return response.accessToken;
   } catch (error) {
-    if (error instanceof Error && (error.message.includes('AADSTS50058') || error.message.includes('AADSTS50076'))) {
-      msalInstance.acquireTokenRedirect({
-        ...loginRequest,
-        account: account,
-      });
+     if (error instanceof InteractionRequiredAuthError) {
+       msalInstance.acquireTokenRedirect({
+         ...loginRequest,
+         account: account
+       });
     } else {
       console.error('Failed to acquire token silently', error);
     }
