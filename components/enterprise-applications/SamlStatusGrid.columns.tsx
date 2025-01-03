@@ -52,13 +52,13 @@ export const samlStatusColumns = (
   createTableColumn<GridItem>({
     columnId: "expiry",
     compare: (a, b) => {
-      let dateA = new Date(a.preferredTokenSigningKeyEndDateTime);
-      let dateB = new Date(b.preferredTokenSigningKeyEndDateTime);
+      const dateA = new Date(a.preferredTokenSigningKeyEndDateTime);
+      const dateB = new Date(b.preferredTokenSigningKeyEndDateTime);
       return dateA.getTime() - dateB.getTime();
     },
     renderHeaderCell: () => "SAML Certificate Expiry Status",
     renderCell: (item) => {
-      let expiry = new Date(item.preferredTokenSigningKeyEndDateTime);
+      const expiry = new Date(item.preferredTokenSigningKeyEndDateTime);
       const nowUtc = new Date();
       const warningUtc = new Date();
       warningUtc.setMonth(warningUtc.getMonth() + 2);
