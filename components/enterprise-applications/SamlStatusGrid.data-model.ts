@@ -30,13 +30,13 @@ export function generateSamlStatus(): SamlStatus[] {
       appDisplayName: "AWS Single-Account Access",
       appId: "aws-id",
       id: "aws-id",
-      preferredTokenSigningKeyEndDateTime: twoYearsFromNow.toISOString()
+      preferredTokenSigningKeyEndDateTime: twoYearsFromNow.toISOString(),
     },
     {
-        appDisplayName: "Workday",
-        appId: "workday-id",
-        id: "worday-id",
-        preferredTokenSigningKeyEndDateTime: now.toISOString()
-      },
+      appDisplayName: "Workday",
+      appId: "workday-id",
+      id: "worday-id",
+      preferredTokenSigningKeyEndDateTime: now.toISOString(),
+    },
   ];
 }
