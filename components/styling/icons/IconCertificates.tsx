@@ -25,7 +25,7 @@ const IconCertificates = () => {
             <stop offset="1" stopColor="#faa21d" />
           </linearGradient>
         </defs>
-        <title>Icon-web-49</title>
+        <title>Certificates</title>
         <rect
           y="0.76"
           width="18"
