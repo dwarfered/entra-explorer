@@ -1,6 +1,7 @@
 "use client";
 
 import CredentialStatusGrid from "@/components/app-registrations/CredentialStatusGrid";
+import IconCertificatesAndSecrets from "@/components/styling/icons/IconCertificatesAndSecrets";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -31,7 +32,7 @@ export default function CredentialStatus() {
           <BreadcrumbButton current>App Registrations</BreadcrumbButton>
         </BreadcrumbItem>
       </Breadcrumb>
-      <Title3 className={styles.toolbar}>App Registrations | <Body2>Certificates & Secrets</Body2> </Title3>
+      <Title3 className={styles.toolbar}><IconCertificatesAndSecrets /> Application Registrations | <Body2>Certificates & Secrets</Body2> </Title3>
       <CredentialStatusGrid />
     </>
   );
