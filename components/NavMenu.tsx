@@ -98,7 +98,7 @@ export default function NavMenu() {
               <AccordionPanel>
                 <Button
                   icon={
-                    pathname === "/app-registrations/certificates-and-secrets" ? (
+                    pathname === "/enterprise-applications/saml-certificate-expiry-status" ? (
                       <DividerTallFilled
                         style={{
                           transform: "scaleX(2)",
@@ -106,17 +106,17 @@ export default function NavMenu() {
                       />
                     ) : undefined
                   }
-                  onClick={() => router.push("/app-registrations/certificates-and-secrets")}
+                  onClick={() => router.push("/enterprise-applications/saml-certificate-expiry-status")}
                   shape="square"
                   appearance="subtle"
                   style={{
                     width: "100%",
                     justifyContent: "flex-start",
                     display: "flex",
-                    ...(pathname === "/app-registrations/certificates-and-secrets" ? activeStyle : {}),
+                    ...(pathname === "/enterprise-applications/saml-certificate-expiry-status" ? activeStyle : {}),
                   }}
                 >
-                  <Body1>SAML Status</Body1>
+                  <Body1>SAML certificate status</Body1>
                 </Button>
               </AccordionPanel>
             </AccordionItem>
