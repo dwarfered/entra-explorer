@@ -17,6 +17,7 @@ import {
   HomeRegular,
 } from "@fluentui/react-icons";
 import { usePathname, useRouter } from "next/navigation";
+import IconAppRegistrations from "./styling/IconAppRegistrations";
 
 export default function NavMenu() {
   const router = useRouter();
@@ -53,7 +54,7 @@ export default function NavMenu() {
           <Accordion defaultOpenItems="1">
             <AccordionItem value="1">
               <AccordionHeader
-                icon={<AppsListRegular />}
+                icon={<IconAppRegistrations />}
                 expandIconPosition="end"
               >
                 <Body1Strong>App Registrations</Body1Strong>
