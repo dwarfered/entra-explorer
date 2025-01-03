@@ -49,7 +49,7 @@ const IconEnterpriseApps = () => {
             <circle cx="13.26" cy="13.27" r="4.16" fill="none" />
           </clipPath>
         </defs>
-        <title>Icon-identity-225</title>
+        <title>Enterprise Applications</title>
         <path
           d="M5.61,10.65H9.94V15H5.61Zm-5-5.76H4.89V.57H1.17a.6.6,0,0,0-.6.6ZM1.17,15H4.89V10.65H.57v3.72A.6.6,0,0,0,1.17,15Zm-.6-5H4.89V5.61H.57Zm10.09,5h3.72a.6.6,0,0,0,.6-.6V10.65H10.66Zm-5-5H9.94V5.61H5.61Zm5.05,0H15V5.61H10.66Zm0-9.36V4.89H15V1.17a.6.6,0,0,0-.6-.6Zm-5,4.32H9.94V.57H5.61Z"
           fill="url(#b715ec20-95db-414c-982b-71456fb0c9ab)"
