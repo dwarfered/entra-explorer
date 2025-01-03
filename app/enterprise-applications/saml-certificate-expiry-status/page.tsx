@@ -1,5 +1,6 @@
 "use client";
 
+import SamlStatusGrid from "@/components/enterprise-applications/SamlStatusGrid";
 import IconCertificates from "@/components/styling/icons/IconCertificates";
 import {
   Breadcrumb,
@@ -31,7 +32,11 @@ export default function CredentialStatus() {
           <BreadcrumbButton current>Enterprise Applications</BreadcrumbButton>
         </BreadcrumbItem>
       </Breadcrumb>
-      <Title3 className={styles.toolbar}><IconCertificates /> Enterprise Applications | <Body2>SAML certificate expiry status</Body2> </Title3>
+      <Title3 className={styles.toolbar}>
+        <IconCertificates /> Enterprise Applications |{" "}
+        <Body2>SAML certificate expiry status</Body2>{" "}
+      </Title3>
+      <SamlStatusGrid />
     </>
   );
 }
