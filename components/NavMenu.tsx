@@ -17,7 +17,8 @@ import {
   HomeRegular,
 } from "@fluentui/react-icons";
 import { usePathname, useRouter } from "next/navigation";
-import IconAppRegistrations from "./styling/IconAppRegistrations";
+import IconAppRegistrations from "./styling/icons/IconAppRegistrations";
+import IconEnterpriseApps from "./styling/icons/IconEnterpriseApps";
 
 export default function NavMenu() {
   const router = useRouter();
@@ -86,6 +87,40 @@ export default function NavMenu() {
             </AccordionItem>
           </Accordion>
         {/* </AuthenticatedTemplate> */}
+        <Accordion defaultOpenItems="1">
+            <AccordionItem value="1">
+              <AccordionHeader
+                icon={<IconEnterpriseApps />}
+                expandIconPosition="end"
+              >
+                <Body1Strong>Enterprise Applications</Body1Strong>
+              </AccordionHeader>
+              <AccordionPanel>
+                <Button
+                  icon={
+                    pathname === "/app-registrations/certificates-and-secrets" ? (
+                      <DividerTallFilled
+                        style={{
+                          transform: "scaleX(2)",
+                        }}
+                      />
+                    ) : undefined
+                  }
+                  onClick={() => router.push("/app-registrations/certificates-and-secrets")}
+                  shape="square"
+                  appearance="subtle"
+                  style={{
+                    width: "100%",
+                    justifyContent: "flex-start",
+                    display: "flex",
+                    ...(pathname === "/app-registrations/certificates-and-secrets" ? activeStyle : {}),
+                  }}
+                >
+                  <Body1>SAML Status</Body1>
+                </Button>
+              </AccordionPanel>
+            </AccordionItem>
+          </Accordion>
       </ToolbarGroup>
       <ToolbarGroup role="presentation"></ToolbarGroup>
     </Toolbar>
