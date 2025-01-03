@@ -12,7 +12,6 @@ import {
   FluentIconsProps,
   WarningFilled,
 } from "@fluentui/react-icons";
-import { DateList } from "../DateList";
 
 const validIconStyleProps: FluentIconsProps = {
   primaryFill: tokens.colorPaletteLightGreenForeground1,
@@ -88,45 +87,69 @@ export const credentialStatusColumns = (
   }),
 
   createTableColumn<GridItem>({
-    columnId: "status",
+    columnId: "active",
     compare: (a, b) =>
       getActiveCredentialsCount(a) - getActiveCredentialsCount(b),
-    renderHeaderCell: () => "Status",
+    renderHeaderCell: () => "Active",
     renderCell: (item) => {
       const activeCount = getActiveCredentialsCount(item);
-      const expiredCount = getExpiredCredentialsCount(item);
 
       if (activeCount === 0) {
         return (
           <TableCellLayout
             media={<ErrorCircleFilled {...errorIconStyleProps} />}
           >
-            0 active ({expiredCount} expired)
+            0
           </TableCellLayout>
         );
       }
 
-      if (activeCount > 0 && expiredCount === 0) {
+      if (activeCount === 1) {
         return (
           <TableCellLayout
             media={<CheckmarkCircleFilled {...validIconStyleProps} />}
           >
-            {activeCount} active
+            {activeCount}
           </TableCellLayout>
         );
       }
 
       return (
-        <TableCellLayout media={<ErrorCircleFilled {...errorIconStyleProps} />}>
-          {activeCount} active
-          {expiredCount > 0 && <span> (and {expiredCount} expired)</span>}
+        <TableCellLayout media={<WarningFilled {...warningIconStyleProps} />}>
+          {activeCount}
         </TableCellLayout>
       );
     },
   }),
 
   createTableColumn<GridItem>({
-    columnId: "passwordCredential",
+    columnId: "expired",
+    compare: (a, b) =>
+      getExpiredCredentialsCount(a) - getExpiredCredentialsCount(b),
+    renderHeaderCell: () => "Expired",
+    renderCell: (item) => {
+      const expiredCount = getExpiredCredentialsCount(item);
+
+      if (expiredCount === 0) {
+        return (
+          <TableCellLayout
+            media={<ErrorCircleFilled {...errorIconStyleProps} />}
+          >
+            0
+          </TableCellLayout>
+        );
+      }
+
+      return (
+        <TableCellLayout media={<WarningFilled {...warningIconStyleProps} />}>
+          {expiredCount}
+        </TableCellLayout>
+      );
+    },
+  }),
+
+  createTableColumn<GridItem>({
+    columnId: "longLived",
     compare: (a, b) =>
       getLongLivedCredentialsCount(a) - getLongLivedCredentialsCount(b),
     renderHeaderCell: () => "Long-lived",
@@ -134,7 +157,13 @@ export const credentialStatusColumns = (
       const count = getLongLivedCredentialsCount(item);
 
       if (count === 0) {
-        return <TableCellLayout media="">-</TableCellLayout>;
+        return (
+          <TableCellLayout
+            media={<CheckmarkCircleFilled {...validIconStyleProps} />}
+          >
+            0
+          </TableCellLayout>
+        );
       }
 
       return (
@@ -164,12 +193,18 @@ export const credentialStatusColumns = (
       const expiringCount = warningDates.length;
 
       if (expiringCount === 0) {
-        return <TableCellLayout media="">-</TableCellLayout>;
+        return (
+          <TableCellLayout
+            media={<CheckmarkCircleFilled {...validIconStyleProps} />}
+          >
+            0
+          </TableCellLayout>
+        );
       }
 
       return (
         <TableCellLayout media={<WarningFilled {...warningIconStyleProps} />}>
-          <DateList dates={warningDates} />
+          {expiringCount}
         </TableCellLayout>
       );
     },
