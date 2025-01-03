@@ -1,4 +1,3 @@
-import { AuthenticatedTemplate } from "@azure/msal-react";
 import {
   Accordion,
   AccordionHeader,
