@@ -9,6 +9,7 @@ import {
   Title3,
   makeStyles,
   shorthands,
+  Body2,
 } from "@fluentui/react-components";
 
 const useStyles = makeStyles({
@@ -23,14 +24,14 @@ export default function CredentialStatus() {
     <>
       <Breadcrumb>
         <BreadcrumbItem>
-          <BreadcrumbButton>App Registrations</BreadcrumbButton>
+          <BreadcrumbButton>Entra Explorer</BreadcrumbButton>
         </BreadcrumbItem>
         <BreadcrumbDivider />
         <BreadcrumbItem>
-          <BreadcrumbButton current>Certificates & Secrets</BreadcrumbButton>
+          <BreadcrumbButton current>App Registrations</BreadcrumbButton>
         </BreadcrumbItem>
       </Breadcrumb>
-      <Title3 className={styles.toolbar}>App Registrations - Certificates & Secrets</Title3>
+      <Title3 className={styles.toolbar}>App Registrations | <Body2>Certificates & Secrets</Body2> </Title3>
       <CredentialStatusGrid />
     </>
   );
