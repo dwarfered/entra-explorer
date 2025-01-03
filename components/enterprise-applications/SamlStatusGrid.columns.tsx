@@ -34,7 +34,7 @@ export const samlStatusColumns = (
   createTableColumn<GridItem>({
     columnId: "displayName",
     compare: (a, b) => a.appDisplayName.localeCompare(b.appDisplayName),
-    renderHeaderCell: () => "Display name",
+    renderHeaderCell: () => "App Display name",
     renderCell: (item) => {
       const link = isAuthenticated
         ? `https://entra.microsoft.com/#view/Microsoft_AAD_IAM/ManagedAppMenuBlade/~/SignOn/objectId/${item.id}/appId/${item.appId}/preferredSingleSignOnMode/saml/servicePrincipalType/Application/fromNav/`
