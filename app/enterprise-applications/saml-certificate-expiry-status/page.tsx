@@ -19,7 +19,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function CredentialStatus() {
+export default function Page() {
   const styles = useStyles();
   return (
     <>
