@@ -12,7 +12,6 @@ import {
   ToolbarGroup,
 } from "@fluentui/react-components";
 import {
-  AppsListRegular,
   DividerTallFilled,
   HomeRegular,
 } from "@fluentui/react-icons";
@@ -118,8 +117,31 @@ export default function NavMenu() {
                 >
                   <Body1>SAML certificate status</Body1>
                 </Button>
+                <Button
+                  icon={
+                    pathname === "/enterprise-applications/app-role-assignments" ? (
+                      <DividerTallFilled
+                        style={{
+                          transform: "scaleX(2)",
+                        }}
+                      />
+                    ) : undefined
+                  }
+                  onClick={() => router.push("/enterprise-applications/app-role-assignments")}
+                  shape="square"
+                  appearance="subtle"
+                  style={{
+                    width: "100%",
+                    justifyContent: "flex-start",
+                    display: "flex",
+                    ...(pathname === "/enterprise-applications/app-role-assignments" ? activeStyle : {}),
+                  }}
+                >
+                  <Body1>App role assignments</Body1>
+                </Button>
               </AccordionPanel>
             </AccordionItem>
+            
           </Accordion>
       </ToolbarGroup>
       <ToolbarGroup role="presentation"></ToolbarGroup>
