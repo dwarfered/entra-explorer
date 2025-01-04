@@ -11,7 +11,6 @@ import {
   makeStyles,
   shorthands,
   Body2,
-  Body1,
 } from "@fluentui/react-components";
 
 const useStyles = makeStyles({
