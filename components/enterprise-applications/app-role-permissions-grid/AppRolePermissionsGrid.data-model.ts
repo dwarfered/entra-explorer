@@ -12,7 +12,7 @@ export interface AppRole {
   displayName: string;
   origin: string;
   description: string;
-  appRoleAssignedTo?: AppRoleAssignedTo[];
+  // appRoleAssignedTo?: AppRoleAssignedTo[];
 }
 
 export interface AppRoleAssignedTo {
