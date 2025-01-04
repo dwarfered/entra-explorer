@@ -39,7 +39,8 @@ export const msalConfig: Configuration = {
     },
   },
   cache: {
-    cacheLocation: "sessionStorage", // This configures where your cache will be stored
+    //cacheLocation: "sessionStorage", // This configures where your cache will be stored
+    cacheLocation: "localStorage", // SSO between tabs
     storeAuthStateInCookie: false, // Set this to "true" if you are having issues on IE11 or Edge
   },
 };
