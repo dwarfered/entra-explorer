@@ -1,8 +1,20 @@
 # Entra Explorer
 
-Entra Explorer is an open-source tool that helps administrators retrieve and visualize information from Microsoft Entra using the Microsoft Graph API.
+Entra Explorer is an open-source solution that leverages Microsoft
+Graph to help administrators retrieve and visualize data from
+Microsoft Entra.
 
-** Pending merge from old repo **
+## Solution Overview
+
+The solution is a single-page application (SPA) hosted on GitHub Pages,
+built with Next.js (a React framework) and styled using Microsoft&apos;s
+Fluent UI. It leverages the Microsoft Authentication Library (MSAL) for
+authentication, with all Microsoft Graph requests handled on the client
+side.
+
+Please note that Entra Explorer is not an official Microsoft product
+and is in no way affiliated with, endorsed by, or sponsored by
+Microsoft.
 
 [Entra Explorer](https://www.entraexplorer.com)
 
