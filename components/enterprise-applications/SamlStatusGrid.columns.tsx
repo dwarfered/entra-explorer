@@ -56,7 +56,7 @@ export const samlStatusColumns = (
       const dateB = new Date(b.preferredTokenSigningKeyEndDateTime);
       return dateA.getTime() - dateB.getTime();
     },
-    renderHeaderCell: () => "SAML Certificate Expiry Status",
+    renderHeaderCell: () => "SAML Certificate Expiry Date",
     renderCell: (item) => {
       const expiry = new Date(item.preferredTokenSigningKeyEndDateTime);
       const nowUtc = new Date();
