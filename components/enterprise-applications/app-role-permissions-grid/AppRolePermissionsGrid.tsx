@@ -3,6 +3,7 @@
 import { SearchRegular } from "@fluentui/react-icons";
 import {
   Caption1,
+  Caption2,
   DataGrid,
   DataGridBody,
   DataGridCell,
@@ -157,7 +158,7 @@ export default function AppRolePermissionsGrid() {
           size="small"
           contentBefore={<SearchRegular />}
           onChange={onSearchChange}
-          placeholder="Filter by display name"
+          placeholder="Filter by permission"
           value={searchTerm}
         />
       </div>
@@ -193,13 +194,13 @@ export default function AppRolePermissionsGrid() {
         <Caption1
           style={{ margin: "6px" }}
         >
+          EntraOps Classifications
           <InfoLabel info={<Link
             target="_blank"
             href={"https://github.com/Cloud-Architekt/AzurePrivilegedIAM"}
           >
-            Cloud-Architekt (Thomas Naunheim)
+            Courtesy Cloud-Architekt (Thomas Naunheim)
           </Link>}>
-            {"EntraOps Classifications"}{" "}
           </InfoLabel>
         </Caption1>
       </div>
