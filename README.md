@@ -12,6 +12,10 @@ Fluent UI. It leverages the Microsoft Authentication Library (MSAL) for
 authentication, with all Microsoft Graph requests handled on the client
 side.
 
+<p align="center">
+  <img src="public/entra-explorer.png" width="600">
+</p>
+
 Please note that Entra Explorer is not an official Microsoft product
 and is in no way affiliated with, endorsed by, or sponsored by
 Microsoft.
