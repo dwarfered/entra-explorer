@@ -22,10 +22,10 @@ const useStyles = makeStyles({
     top: 0,
     zIndex: 1000,
   },
-  content: {},
+  content: {} ,
   container: {
     height: "calc(100vh - 40px - 20px)",
-    overflow: "hidden",
+    overflowY: "auto",
     ...shorthands.margin("10px"),
     flexGrow: 1,
   },
