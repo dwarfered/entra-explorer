@@ -34,7 +34,7 @@ export default function Page() {
       </Breadcrumb>
       <Title3 className={styles.toolbar}>
         <IconCertificates /> Enterprise Applications |{" "}
-        <Body2>SAML certificate expiry status</Body2>{" "}
+        <Body2>SAML certificate expiry dates</Body2>{" "}
       </Title3>
       <SamlStatusGrid />
     </>
