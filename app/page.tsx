@@ -24,7 +24,7 @@ export default function Home() {
       </Body1>
       <Caption1>
         Please note that Entra Explorer is not an official Microsoft product and
-        is not affiliated with, endorsed, or sponsored by Microsoft.
+        is in no way affiliated with, endorsed by, or sponsored by Microsoft.
       </Caption1>
 
       <h2>Solution Overview</h2>
@@ -34,7 +34,7 @@ export default function Home() {
           <div style={{ maxWidth: "600px", margin: "0 auto" }}>
             <Image
               src="/entra-explorer.png"
-              alt="EntraExplorer Architecture"
+              alt="Entra Explorer Architecture"
               width={500}
               height={300}
               layout="responsive"
