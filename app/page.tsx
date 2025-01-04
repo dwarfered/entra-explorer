@@ -23,6 +23,19 @@ export default function Home() {
         </p>
       </Body1>
 
+      <h2>Updates</h2>
+
+      <ul>
+        <li>
+          All Application Registrations that include certificates and secrets.
+        </li>
+        <li>All Enterprise Applications with assigned application roles.</li>
+        <li>
+          All Enterprise Applications configured for SAML SSO, along with their
+          expiration dates.
+        </li>
+      </ul>
+
       <h2>Solution Overview</h2>
 
       <div style={{ textAlign: "center" }}>
