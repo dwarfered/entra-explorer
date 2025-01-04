@@ -1,5 +1,6 @@
 "use client";
 
+import AppRolePermissionsGrid from "@/components/enterprise-applications/app-role-permissions-grid/AppRolePermissionsGrid";
 import IconPermissions from "@/components/styling/icons/IconPermissions";
 import {
   Breadcrumb,
@@ -11,6 +12,7 @@ import {
   shorthands,
   Body2,
 } from "@fluentui/react-components";
+import App from "next/app";
 
 const useStyles = makeStyles({
   toolbar: {
@@ -35,7 +37,7 @@ export default function Page() {
         <IconPermissions /> Enterprise Applications |{" "}
         <Body2>App role permissions</Body2>{" "}
       </Title3>
-      {/* <SamlStatusGrid /> */}
+      <AppRolePermissionsGrid />
     </>
   );
 }
