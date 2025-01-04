@@ -11,6 +11,7 @@ import {
   makeStyles,
   shorthands,
   Body2,
+  Body1,
 } from "@fluentui/react-components";
 
 const useStyles = makeStyles({
@@ -33,6 +34,7 @@ export default function CredentialStatus() {
         </BreadcrumbItem>
       </Breadcrumb>
       <Title3 className={styles.toolbar}><IconCertificatesAndSecrets /> Application Registrations | <Body2>Certificates & Secrets</Body2> </Title3>
+      <p>All Application Registrations that include certificates and secrets.</p>
       <CredentialStatusGrid />
     </>
   );
