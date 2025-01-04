@@ -36,6 +36,7 @@ export default function Page() {
         <IconPermissions /> Enterprise Applications |{" "}
         <Body2>App role permissions</Body2>{" "}
       </Title3>
+      <p>All Enterprise Applications with assigned application roles.</p>
       <AppRolePermissionsGrid />
     </>
   );
