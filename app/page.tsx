@@ -26,9 +26,7 @@ export default function Home() {
         is not affiliated with, endorsed, or sponsored by Microsoft.
       </Caption1>
 
-      <h2>Architecture Overview</h2>
-
-      <h3>Single Page Application (SPA)</h3>
+      <h2>Solution Overview</h2>
 
       <Link style={{ padding: "20px" }} href="/entraexplorer.png">
         <div style={{ maxWidth: "600px" }}>
@@ -45,9 +43,9 @@ export default function Home() {
       <p>
         Entra Explorer is a Single Page Application (SPA) hosted on GitHub
         Pages, developed using Next.js—a React framework—and styled with
-        Microsoft&apos;s FluentUI. It employs the MSAL 2.0 library for
+        Microsoft&apos;s FluentUI. It uses the Microsoft Authentication Library (MSAL) for
         authentication, with all data requests to Microsoft Graph handled via
-        client-side logic. There is no intermediate server-side processing.
+        client-side logic.
       </p>
 
       <div>
