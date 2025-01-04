@@ -36,6 +36,7 @@ export default function Page() {
         <IconCertificates /> Enterprise Applications |{" "}
         <Body2>SAML certificate expiry dates</Body2>{" "}
       </Title3>
+      <p>All Enterprise Applications configured for SAML SSO, along with their expiration dates.</p>
       <SamlStatusGrid />
     </>
   );
