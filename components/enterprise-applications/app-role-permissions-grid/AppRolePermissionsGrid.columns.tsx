@@ -37,7 +37,7 @@ export const appRoleColumns = (
         return (
           <TableCellLayout style={{ wordBreak: "break-word" }}>
             {item.eamTierLevelTagValue === 2 && (
-              <FluentProvider theme={lowRatingTheme}>
+              <FluentProvider theme={lowRatingTheme} style={{ backgroundColor: "transparent" }}>
                 <RatingDisplay
                   icon={SquareFilled}
                   color="brand"
@@ -50,7 +50,7 @@ export const appRoleColumns = (
             )}
   
             {item.eamTierLevelTagValue === 1 && (
-              <FluentProvider theme={mediumRatingTheme}>
+              <FluentProvider theme={mediumRatingTheme} style={{ backgroundColor: "transparent" }}>
                 <RatingDisplay
                   icon={SquareFilled}
                   color="brand"
@@ -63,7 +63,7 @@ export const appRoleColumns = (
             )}
   
             {item.eamTierLevelTagValue === 0 && (
-              <FluentProvider theme={highRatingTheme}>
+              <FluentProvider theme={highRatingTheme} style={{ backgroundColor: "transparent" }}>
                 <RatingDisplay
                   icon={SquareFilled}
                   color="brand"
