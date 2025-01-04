@@ -3,7 +3,6 @@
 import { SearchRegular } from "@fluentui/react-icons";
 import {
   Caption1,
-  Caption2,
   DataGrid,
   DataGridBody,
   DataGridCell,
@@ -112,8 +111,8 @@ export default function AppRolePermissionsGrid() {
 
   const {
     data: selectedServicePrincipalData,
-    error: selectedServicePrincipalError,
-    isLoading: selectedServicePrincipalIsLoading,
+    // error: selectedServicePrincipalError,
+    // isLoading: selectedServicePrincipalIsLoading,
   } = useAuthenticatedSWR<ServicePrincipal>(
     `${graphConfig.graphGetServicePrincipal}?&$filter=appid eq '00000003-0000-0000-c000-000000000000'`,
     isAuthenticated
@@ -125,8 +124,8 @@ export default function AppRolePermissionsGrid() {
 
   const {
     data: appRolesAssignedToData,
-    error: appRolesAssignedToError,
-    isLoading: appRolesAssignedToIsLoading,
+    // error: appRolesAssignedToError,
+    // isLoading: appRolesAssignedToIsLoading,
   } = useAuthenticatedSWR<AppRoleAssignedTo>(
     getServicePrincipalAppRolesAssignedTo ?? "",
     isAuthenticated && !!getServicePrincipalAppRolesAssignedTo
