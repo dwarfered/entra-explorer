@@ -16,6 +16,14 @@ side.
   <img src="public/entra-explorer.png" width="600">
 </p>
 
+## Updates
+
+- All Application Registrations that include certificates and secrets.
+- All Enterprise Applications with assigned application roles.
+- All Enterprise Applications configured for SAML SSO, along with their expiration dates.
+
+---
+
 Please note that Entra Explorer is not an official Microsoft product
 and is in no way affiliated with, endorsed by, or sponsored by
 Microsoft.
