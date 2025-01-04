@@ -5,7 +5,7 @@ import { highRatingTheme, lowRatingTheme, mediumRatingTheme } from "@/lib/utils/
 
 export const createColumns = (
     isAuthenticated: boolean,
-    servicePrincipalAppIdsLoading: boolean
+    // servicePrincipalAppIdsLoading: boolean
   ): TableColumnDefinition<GridItem>[] => [
     createTableColumn<GridItem>({
       columnId: "permission",
