@@ -3,7 +3,7 @@ import { GridItem } from "./AppRolePermissionsGrid.data-model";
 import { SquareFilled } from "@fluentui/react-icons";
 import { highRatingTheme, lowRatingTheme, mediumRatingTheme } from "@/lib/utils/fluentuiHelper";
 
-export const createColumns = (
+export const appRoleColumns = (
     isAuthenticated: boolean,
     // servicePrincipalAppIdsLoading: boolean
   ): TableColumnDefinition<GridItem>[] => [
@@ -101,14 +101,7 @@ export const createColumns = (
         return a.principalDisplayName.localeCompare(b.principalDisplayName);
       },
       renderHeaderCell: () => {
-        return servicePrincipalAppIdsLoading ? (
-          <div style={{ display: "flex", alignItems: "center", width: "100%" }}>
-            <span style={{ marginRight: "8px" }}>Service Principal</span>
-            {/* <Spinner size="tiny" /> */}
-          </div>
-        ) : (
-          <div>Service Principal</div>
-        );
+        return "Display Name";
       },
       renderCell: (item) => {
         const link =
