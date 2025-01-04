@@ -12,7 +12,6 @@ import {
   shorthands,
   Body2,
 } from "@fluentui/react-components";
-import App from "next/app";
 
 const useStyles = makeStyles({
   toolbar: {
