@@ -13,6 +13,7 @@ import {
   InfoLabel,
   Input,
   Link,
+  Select,
   Subtitle2,
 } from "@fluentui/react-components";
 
@@ -81,7 +82,7 @@ function useFilter(
           createdDateTime: assigned.createdDateTime,
           eamTierLevelName: entraOpsClassification!.EAMTierLevelName,
           eamTierLevelTagValue: entraOpsClassification!.EAMTierLevelTagValue,
-          eamTierLevelDefinitionService: entraOpsClassification!.Service
+          eamTierLevelDefinitionService: entraOpsClassification!.Service,
         };
 
         return gridItem;
@@ -152,6 +153,12 @@ export default function AppRolePermissionsGrid() {
         </div>
       )}
 
+      <div>
+        <Select size="small" style={{ width: "200px", margin: "6px" }} disabled>
+          <option>Microsoft Graph</option>
+        </Select>
+      </div>
+
       <div style={{ margin: "6px" }}>
         <Input
           type="text"
@@ -191,20 +198,20 @@ export default function AppRolePermissionsGrid() {
       </DataGrid>
 
       <div>
-        <Caption1
-          style={{ margin: "6px" }}
-        >
+        <Caption1 style={{ margin: "6px" }}>
           EntraOps Classifications
-          <InfoLabel info={<Link
-            target="_blank"
-            href={"https://github.com/Cloud-Architekt/AzurePrivilegedIAM"}
-          >
-            Courtesy Cloud-Architekt (Thomas Naunheim)
-          </Link>}>
-          </InfoLabel>
+          <InfoLabel
+            info={
+              <Link
+                target="_blank"
+                href={"https://github.com/Cloud-Architekt/AzurePrivilegedIAM"}
+              >
+                Courtesy Cloud-Architekt (Thomas Naunheim)
+              </Link>
+            }
+          ></InfoLabel>
         </Caption1>
       </div>
-
     </div>
   );
 }
