@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import styles from "./page.module.css";
 import {
   Body1,
@@ -16,9 +17,9 @@ export default function Home() {
       <Title1>Entra Explorer</Title1>
       <Body1>
         <p>
-          Entra Explorer is an open-source tool that helps administrators
-          retrieve and visualize information from Microsoft Entra using the
-          underlying Microsoft Graph API.
+          Entra Explorer is an open-source solution that leverages Microsoft
+          Graph to help administrators retrieve and visualize data from
+          Microsoft Entra.
         </p>
       </Body1>
       <Caption1>
@@ -28,24 +29,26 @@ export default function Home() {
 
       <h2>Solution Overview</h2>
 
-      <Link style={{ padding: "20px" }} href="/entraexplorer.png">
-        <div style={{ maxWidth: "600px" }}>
-          {/* <Image
-            src="/entraexplorer.png" // The path to your image
-            alt="EntraExplorer Architecture"
-            width={500} // Set the width as needed
-            height={300} // Set the height as needed
-            layout="responsive" // Can be 'fixed', 'responsive', 'intrinsic', or 'fill'
-          /> */}
-        </div>
-      </Link>
+      <div style={{ textAlign: "center" }}>
+        <Link style={{ padding: "20px" }} href="/entra-explorer.png">
+          <div style={{ maxWidth: "600px", margin: "0 auto" }}>
+            <Image
+              src="/entra-explorer.png"
+              alt="EntraExplorer Architecture"
+              width={500}
+              height={300}
+              layout="responsive"
+            />
+          </div>
+        </Link>
+      </div>
 
       <p>
-        Entra Explorer is a Single Page Application (SPA) hosted on GitHub
-        Pages, developed using Next.js—a React framework—and styled with
-        Microsoft&apos;s FluentUI. It uses the Microsoft Authentication Library (MSAL) for
-        authentication, with all data requests to Microsoft Graph handled via
-        client-side logic.
+        Entra Explorer is a single-page application (SPA) hosted on GitHub
+        Pages, built with Next.js (a React framework) and styled using
+        Microsoft's Fluent UI. It leverages the Microsoft Authentication Library
+        (MSAL) for authentication, with all Microsoft Graph requests handled on
+        the client side.
       </p>
 
       <div>
@@ -71,7 +74,7 @@ export default function Home() {
         </Caption1>
       </div>
 
-            <br/>
+      <br />
 
       <Divider />
 
