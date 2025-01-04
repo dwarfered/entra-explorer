@@ -2,6 +2,7 @@
 
 import { SearchRegular } from "@fluentui/react-icons";
 import {
+  Caption1,
   DataGrid,
   DataGridBody,
   DataGridCell,
@@ -10,6 +11,7 @@ import {
   DataGridRow,
   InfoLabel,
   Input,
+  Link,
   Subtitle2,
 } from "@fluentui/react-components";
 
@@ -186,6 +188,22 @@ export default function AppRolePermissionsGrid() {
           )}
         </DataGridBody>
       </DataGrid>
+
+      <div>
+        <Caption1
+          style={{ margin: "6px" }}
+        >
+          <InfoLabel info={<Link
+            target="_blank"
+            href={"https://github.com/Cloud-Architekt/AzurePrivilegedIAM"}
+          >
+            Cloud-Architekt (Thomas Naunheim)
+          </Link>}>
+            {"EntraOps Classifications"}{" "}
+          </InfoLabel>
+        </Caption1>
+      </div>
+
     </div>
   );
 }
