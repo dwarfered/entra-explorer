@@ -58,6 +58,8 @@ export const graphConfig = {
     "https://graph.microsoft.com/v1.0/applications?$select=appId,displayName,keyCredentials,passwordCredentials&$top=999",
   graphSamlExpiryEndpoint:
     "https://graph.microsoft.com/beta/servicePrincipals?$select=preferredTokenSigningKeyEndDateTime,appDisplayName,id,appId&$top=999&$filter=preferredTokenSigningKeyEndDateTime ge 2021-01-02T12:00:00Z",
-};
+    graphGetServicePrincipal:
+    "https://graph.microsoft.com/v1.0/servicePrincipals",
+  };
 
 export const msalInstance = new PublicClientApplication(msalConfig);
