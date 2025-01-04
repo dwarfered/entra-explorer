@@ -25,6 +25,7 @@ import {
   AppRole,
   AppRoleAssignedTo,
   GridItem,
+  sampleItems,
   ServicePrincipal,
 } from "./AppRolePermissionsGrid.data-model";
 import { fetcher, ODataResponse } from "@/lib/utils/msGraphFetcher";
@@ -43,6 +44,13 @@ function useFilter(
   searchTerm: string
 ) {
   return useMemo(() => {
+    const normalizedSearchTerm = searchTerm.toLowerCase();
+    if (!isAuthenticated) {
+      return sampleItems.filter((item) =>
+        item.permission.toLowerCase().includes(normalizedSearchTerm)
+      );
+    }
+
     if (!appRolesAssignedToData || !selectedServicePrincipalData) return [];
 
     const appRoleMap = new Map<
@@ -55,10 +63,6 @@ function useFilter(
         appRoleMap.set(role.id, { sp, role });
       }
     }
-
-    const normalizedSearchTerm = searchTerm.toLowerCase();
-
-    // 2. Build a list of GridItem objects by matching assigned roles to AppRoles
     const gridItems: GridItem[] = appRolesAssignedToData
       .map((assigned) => {
         const match = appRoleMap.get(assigned.appRoleId);
@@ -72,13 +76,12 @@ function useFilter(
           role.value
         );
 
-        // Construct a GridItem from the matched data
         const gridItem: GridItem = {
           permission: role.value,
           description: role.description,
           principalDisplayName: assigned.principalDisplayName,
           principalId: assigned.principalId,
-          appId: sp.appId, // If you want to show the Service Principal appId
+          appId: sp.appId,
           createdDateTime: assigned.createdDateTime,
           eamTierLevelName: entraOpsClassification!.EAMTierLevelName,
           eamTierLevelTagValue: entraOpsClassification!.EAMTierLevelTagValue,
@@ -125,7 +128,7 @@ export default function AppRolePermissionsGrid() {
     error: appRolesAssignedToError,
     isLoading: appRolesAssignedToIsLoading,
   } = useAuthenticatedSWR<AppRoleAssignedTo>(
-    getServicePrincipalAppRolesAssignedTo ?? "", // Coalesce to an empty string when null
+    getServicePrincipalAppRolesAssignedTo ?? "",
     isAuthenticated && !!getServicePrincipalAppRolesAssignedTo
   );
 
