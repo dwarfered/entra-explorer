@@ -9,7 +9,6 @@ import {
   BreadcrumbButton,
   BreadcrumbDivider,
   Title3,
-  Body2,
   Body1,
 } from "@fluentui/react-components";
 
@@ -26,7 +25,8 @@ export default function CredentialStatus() {
           <BreadcrumbButton current>App Registrations</BreadcrumbButton>
         </BreadcrumbItem>
       </Breadcrumb>
-      <Title3><IconCertificatesAndSecrets /> Application Registrations | <Body2>Certificates & Secrets</Body2> </Title3>
+      <Title3><IconCertificatesAndSecrets /> Certificates & secrets</Title3>
+
       <h1 className={styles.h1}><Body1>All Application Registrations that include certificates and secrets.</Body1></h1>
       <CredentialStatusGrid />
     </>

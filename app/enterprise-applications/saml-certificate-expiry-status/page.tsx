@@ -9,7 +9,6 @@ import {
   BreadcrumbButton,
   BreadcrumbDivider,
   Title3,
-  Body2,
   Body1,
 } from "@fluentui/react-components";
 
@@ -27,8 +26,7 @@ export default function Page() {
         </BreadcrumbItem>
       </Breadcrumb>
       <Title3>
-        <IconCertificates /> Enterprise Applications |{" "}
-        <Body2>SAML certificate expiry dates</Body2>{" "}
+        <IconCertificates /> SAML certificate expiry dates
       </Title3>
       <h1 className={styles.h1}><Body1>All Enterprise Applications configured for SAML SSO, along with their expiration dates.</Body1></h1>
       <SamlStatusGrid />

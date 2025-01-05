@@ -9,7 +9,6 @@ import {
   BreadcrumbButton,
   BreadcrumbDivider,
   Title3,
-  Body2,
   Body1,
 } from "@fluentui/react-components";
 
@@ -27,8 +26,7 @@ export default function Page() {
         </BreadcrumbItem>
       </Breadcrumb>
       <Title3>
-        <IconPermissions /> Enterprise Applications |{" "}
-        <Body2>App role permissions</Body2>{" "}
+        <IconPermissions /> App role permissions{" "}
       </Title3>
       <h1 className={styles.h1}><Body1>All Enterprise Applications with assigned application roles.</Body1></h1>
       <AppRolePermissionsGrid />
