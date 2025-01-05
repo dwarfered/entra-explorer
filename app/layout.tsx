@@ -22,7 +22,7 @@ const useStyles = makeStyles({
     top: 0,
     zIndex: 1000,
   },
-  content: {} ,
+  content: {...shorthands.margin("6px"),} ,
   container: {
     height: "calc(100vh - 40px - 20px)",
     overflowY: "auto",

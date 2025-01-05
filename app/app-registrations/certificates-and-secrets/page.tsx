@@ -2,25 +2,19 @@
 
 import CredentialStatusGrid from "@/components/app-registrations/CredentialStatusGrid";
 import IconCertificatesAndSecrets from "@/components/styling/icons/IconCertificatesAndSecrets";
+import { useGlobalStyles } from "@/lib/utils/fluentuiHelper";
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbButton,
   BreadcrumbDivider,
   Title3,
-  makeStyles,
-  shorthands,
   Body2,
+  Body1,
 } from "@fluentui/react-components";
 
-const useStyles = makeStyles({
-  toolbar: {
-    ...shorthands.margin("6px"),
-  },
-});
-
 export default function CredentialStatus() {
-  const styles = useStyles();
+  const styles = useGlobalStyles();
   return (
     <>
       <Breadcrumb>
@@ -32,8 +26,8 @@ export default function CredentialStatus() {
           <BreadcrumbButton current>App Registrations</BreadcrumbButton>
         </BreadcrumbItem>
       </Breadcrumb>
-      <Title3 className={styles.toolbar}><IconCertificatesAndSecrets /> Application Registrations | <Body2>Certificates & Secrets</Body2> </Title3>
-      <p>All Application Registrations that include certificates and secrets.</p>
+      <Title3><IconCertificatesAndSecrets /> Application Registrations | <Body2>Certificates & Secrets</Body2> </Title3>
+      <h1 className={styles.h1}><Body1>All Application Registrations that include certificates and secrets.</Body1></h1>
       <CredentialStatusGrid />
     </>
   );

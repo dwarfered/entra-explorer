@@ -1,4 +1,4 @@
-import { makeStyles, typographyStyles, BrandVariants, createLightTheme, Theme, tokens } from "@fluentui/react-components";
+import { makeStyles, typographyStyles, BrandVariants, createLightTheme, Theme, tokens, shorthands } from "@fluentui/react-components";
 
 export const useGlobalStyles = makeStyles({
   title: typographyStyles.title3,
@@ -26,7 +26,11 @@ export const useGlobalStyles = makeStyles({
       backgroundColor: "#333",
       color: "#fff",
     },
-  }
+  },
+
+  h1: {
+    ...shorthands.margin('6px')
+  },
 
 });
 
