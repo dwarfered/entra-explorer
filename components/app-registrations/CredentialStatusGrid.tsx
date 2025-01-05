@@ -22,6 +22,7 @@ import { Application, generateApplications } from "./CredentialStatusGrid.data-m
 import { credentialStatusColumns } from "./CredentialStatusGrid.columns";
 import { fetcher, ODataResponse } from "@/lib/utils/msGraphFetcher";
 import { graphConfig } from "@/lib/msalConfig";
+import { SkeletonGrid } from "../SkeletonGrid";
 
 function useAuthenticatedSWR<T>(url: string, isAuthenticated: boolean) {
   return useSWR<ODataResponse<T>>(isAuthenticated ? url : null, fetcher);
@@ -124,7 +125,7 @@ export default function CredentialStatusGrid() {
     return (
       <div style={{ margin: "6px" }}>
         <Body1>Loading...</Body1>
-        {/* <SkeletonGrid columns={4} /> */}
+        <SkeletonGrid columns={5} />
       </div>
     );
   }

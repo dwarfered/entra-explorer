@@ -2,6 +2,7 @@
 
 import { SearchRegular } from "@fluentui/react-icons";
 import {
+  Body1,
   Caption1,
   DataGrid,
   DataGridBody,
@@ -31,6 +32,7 @@ import { fetcher, ODataResponse } from "@/lib/utils/msGraphFetcher";
 import { graphConfig } from "@/lib/msalConfig";
 import { appRoleColumns } from "./AppRolePermissionsGrid.columns";
 import { findEntraOpsClassificationByPermission } from "@/lib/utils/entraOpsHelper";
+import { SkeletonGrid } from "@/components/SkeletonGrid";
 
 function useAuthenticatedSWR<T>(url: string, isAuthenticated: boolean) {
   return useSWR<ODataResponse<T>>(isAuthenticated ? url : null, fetcher);
@@ -125,7 +127,7 @@ export default function AppRolePermissionsGrid() {
   const {
     data: appRolesAssignedToData,
     // error: appRolesAssignedToError,
-    // isLoading: appRolesAssignedToIsLoading,
+    isLoading: appRolesAssignedToIsLoading,
   } = useAuthenticatedSWR<AppRoleAssignedTo>(
     getServicePrincipalAppRolesAssignedTo ?? "",
     isAuthenticated && !!getServicePrincipalAppRolesAssignedTo
@@ -142,6 +144,16 @@ export default function AppRolePermissionsGrid() {
     selectedServicePrincipalData?.value,
     searchTerm
   );
+
+    if (appRolesAssignedToIsLoading) {
+      // Optionally render a skeleton or partial grid
+      return (
+        <div style={{ margin: "6px" }}>
+          <Body1>Loading...</Body1>
+          <SkeletonGrid columns={5} />
+        </div>
+      );
+    }
 
   return (
     <div>

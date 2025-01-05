@@ -22,6 +22,7 @@ import { SamlStatus, generateSamlStatus } from "./SamlStatusGrid.data-model";
 import { samlStatusColumns } from "./SamlStatusGrid.columns";
 import { fetcher, ODataResponse } from "@/lib/utils/msGraphFetcher";
 import { graphConfig } from "@/lib/msalConfig";
+import { SkeletonGrid } from "../SkeletonGrid";
 
 function useAuthenticatedSWR<T>(url: string, isAuthenticated: boolean) {
   return useSWR<ODataResponse<T>>(isAuthenticated ? url : null, fetcher);
@@ -35,10 +36,9 @@ function useFilteredSamlStatus(
   return useMemo(() => {
     const normalizedSearchTerm = searchTerm.toLowerCase();
     const processSamlStatus = (samlStatus: SamlStatus[]) =>
-      samlStatus
-        .filter((item) =>
-          item.appDisplayName.toLowerCase().startsWith(normalizedSearchTerm)
-        );
+      samlStatus.filter((item) =>
+        item.appDisplayName.toLowerCase().startsWith(normalizedSearchTerm)
+      );
 
     if (!isAuthenticated) {
       const samlStatuses = generateSamlStatus();
@@ -82,7 +82,7 @@ export default function SamlStatusGrid() {
     return (
       <div style={{ margin: "6px" }}>
         <Body1>Loading...</Body1>
-        {/* <SkeletonGrid columns={4} /> */}
+        <SkeletonGrid columns={2} />
       </div>
     );
   }
