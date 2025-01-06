@@ -159,9 +159,9 @@ export const credentialStatusColumns = (
       if (count === 0) {
         return (
           <TableCellLayout
-            media={<CheckmarkCircleFilled {...validIconStyleProps} />}
+            media={ undefined }
           >
-            0
+            -
           </TableCellLayout>
         );
       }
@@ -175,7 +175,7 @@ export const credentialStatusColumns = (
   }),
 
   createTableColumn<GridItem>({
-    columnId: "warnCredential",
+    columnId: "nearExpiry",
     compare: (a, b) => {
       const earliestA = getEarliestWarningDate(a);
       const earliestB = getEarliestWarningDate(b);
@@ -195,9 +195,8 @@ export const credentialStatusColumns = (
       if (expiringCount === 0) {
         return (
           <TableCellLayout
-            media={<CheckmarkCircleFilled {...validIconStyleProps} />}
           >
-            0
+            -
           </TableCellLayout>
         );
       }
