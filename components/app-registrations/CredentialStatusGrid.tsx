@@ -152,16 +152,16 @@ export default function CredentialStatusGrid() {
     );
   }
 
-  // type SortDirection = "ascending" | "descending";
-  // interface SortState {
-  //   sortColumn?: string;
-  //   sortDirection: SortDirection;
-  // }
+  type SortDirection = "ascending" | "descending";
+  interface SortState {
+    sortColumn: string | undefined;
+    sortDirection: SortDirection;
+  }
 
-  // const defaultSortState: SortState = {
-  //   sortColumn: "warnCredential",
-  //   sortDirection: "ascending",
-  // };
+  const newSortState: SortState = {
+    sortColumn: "nearExpiry",
+    sortDirection: "ascending",
+  };
 
   return (
     <div>
@@ -195,8 +195,8 @@ export default function CredentialStatusGrid() {
         items={filteredItems}
         columns={columns}
         sortable
-        getRowId={(item) => item.displayName}
-        // defaultSortState={defaultSortState}
+        getRowId={(item) => item.appId}
+        defaultSortState={newSortState}
         style={{ marginBottom: "10px" }}
       >
         <DataGridHeader>

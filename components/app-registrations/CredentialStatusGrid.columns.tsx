@@ -12,6 +12,7 @@ import {
   FluentIconsProps,
   WarningFilled,
 } from "@fluentui/react-icons";
+import { DateList } from "../DateList";
 
 const validIconStyleProps: FluentIconsProps = {
   primaryFill: tokens.colorPaletteLightGreenForeground1,
@@ -133,9 +134,9 @@ export const credentialStatusColumns = (
       if (expiredCount === 0) {
         return (
           <TableCellLayout
-            media={<ErrorCircleFilled {...errorIconStyleProps} />}
+            media={ undefined}
           >
-            0
+            -
           </TableCellLayout>
         );
       }
@@ -203,8 +204,8 @@ export const credentialStatusColumns = (
 
       return (
         <TableCellLayout media={<WarningFilled {...warningIconStyleProps} />}>
-          {expiringCount}
-        </TableCellLayout>
+        <DateList dates={warningDates} />
+      </TableCellLayout>
       );
     },
   }),
