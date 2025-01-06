@@ -15,7 +15,7 @@ import {
 } from "@fluentui/react-components";
 
 import { useIsAuthenticated } from "@azure/msal-react";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef } from "react";
 import useSWR from "swr";
 
 import { Application, generateApplications } from "./CredentialStatusGrid.data-model";
@@ -23,7 +23,7 @@ import { credentialStatusColumns } from "./CredentialStatusGrid.columns";
 import { fetcher, ODataResponse } from "@/lib/utils/msGraphFetcher";
 import { graphConfig } from "@/lib/msalConfig";
 import { SkeletonGrid } from "../SkeletonGrid";
-import { useDebouncedValue } from "@/lib/utils/common";
+import useDebounce from "@/lib/utils/common";
 
 function useAuthenticatedSWR<T>(url: string, isAuthenticated: boolean) {
   return useSWR<ODataResponse<T>>(isAuthenticated ? url : null, fetcher);
@@ -97,10 +97,17 @@ function useFilteredCredentials(
 
 export default function CredentialStatusGrid() {
   const isAuthenticated = useIsAuthenticated();
+  
   const [searchTerm, setSearchTerm] = useState("");
-  const debouncedSearchTerm = useDebouncedValue(searchTerm, 300);
-  const onSearchChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setSearchTerm(e.target.value);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const debouncedSetSearchTerm = useDebounce((value: string) => {
+    setSearchTerm(value);
+  }, 300);
+  const handleChange = () => {
+    if (inputRef.current) {
+      debouncedSetSearchTerm(inputRef.current.value);
+    }
+  };
 
   const {
     data: appCredentialData,
@@ -119,7 +126,7 @@ export default function CredentialStatusGrid() {
   const filteredItems = useFilteredCredentials(
     isAuthenticated,
     appCredentialData?.value,
-    debouncedSearchTerm
+    searchTerm
   );
 
   if (appCredentialIsLoading) {
@@ -177,9 +184,9 @@ export default function CredentialStatusGrid() {
           type="text"
           size="small"
           contentBefore={<SearchRegular />}
-          onChange={onSearchChange}
+          ref={inputRef}
+          onChange={handleChange}
           placeholder="Filter by display name"
-          value={searchTerm}
         />
       </div>
 

@@ -18,7 +18,7 @@ import {
 } from "@fluentui/react-components";
 
 import { useIsAuthenticated } from "@azure/msal-react";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef } from "react";
 import useSWR from "swr";
 
 import {
@@ -33,7 +33,7 @@ import { graphConfig } from "@/lib/msalConfig";
 import { appRoleColumns } from "./AppRolePermissionsGrid.columns";
 import { findEntraOpsClassificationByPermission } from "@/lib/utils/entraOpsHelper";
 import { SkeletonGrid } from "@/components/SkeletonGrid";
-import { useDebouncedValue } from "@/lib/utils/common";
+import useDebounce from "@/lib/utils/common";
 
 function useAuthenticatedSWR<T>(url: string, isAuthenticated: boolean) {
   return useSWR<ODataResponse<T>>(isAuthenticated ? url : null, fetcher);
@@ -108,10 +108,17 @@ function useFilter(
 
 export default function AppRolePermissionsGrid() {
   const isAuthenticated = useIsAuthenticated();
+
   const [searchTerm, setSearchTerm] = useState("");
-  const debouncedSearchTerm = useDebouncedValue(searchTerm, 300);
-  const onSearchChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setSearchTerm(e.target.value);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const debouncedSetSearchTerm = useDebounce((value: string) => {
+    setSearchTerm(value);
+  }, 300);
+  const handleChange = () => {
+    if (inputRef.current) {
+      debouncedSetSearchTerm(inputRef.current.value);
+    }
+  };
 
   const {
     data: selectedServicePrincipalData,
@@ -144,18 +151,18 @@ export default function AppRolePermissionsGrid() {
     isAuthenticated,
     appRolesAssignedToData?.value,
     selectedServicePrincipalData?.value,
-    debouncedSearchTerm
+    searchTerm
   );
 
-    if (appRolesAssignedToIsLoading) {
-      // Optionally render a skeleton or partial grid
-      return (
-        <div style={{ margin: "6px" }}>
-          <Body1>Loading...</Body1>
-          <SkeletonGrid columns={5} />
-        </div>
-      );
-    }
+  if (appRolesAssignedToIsLoading) {
+    // Optionally render a skeleton or partial grid
+    return (
+      <div style={{ margin: "6px" }}>
+        <Body1>Loading...</Body1>
+        <SkeletonGrid columns={5} />
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -180,9 +187,9 @@ export default function AppRolePermissionsGrid() {
           type="text"
           size="small"
           contentBefore={<SearchRegular />}
-          onChange={onSearchChange}
+          ref={inputRef}
+          onChange={handleChange}
           placeholder="Filter by permission"
-          value={searchTerm}
         />
       </div>
 
