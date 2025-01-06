@@ -33,6 +33,7 @@ import { graphConfig } from "@/lib/msalConfig";
 import { appRoleColumns } from "./AppRolePermissionsGrid.columns";
 import { findEntraOpsClassificationByPermission } from "@/lib/utils/entraOpsHelper";
 import { SkeletonGrid } from "@/components/SkeletonGrid";
+import { useDebouncedValue } from "@/lib/utils/common";
 
 function useAuthenticatedSWR<T>(url: string, isAuthenticated: boolean) {
   return useSWR<ODataResponse<T>>(isAuthenticated ? url : null, fetcher);
@@ -108,6 +109,7 @@ function useFilter(
 export default function AppRolePermissionsGrid() {
   const isAuthenticated = useIsAuthenticated();
   const [searchTerm, setSearchTerm] = useState("");
+  const debouncedSearchTerm = useDebouncedValue(searchTerm, 300);
   const onSearchChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setSearchTerm(e.target.value);
 
@@ -142,7 +144,7 @@ export default function AppRolePermissionsGrid() {
     isAuthenticated,
     appRolesAssignedToData?.value,
     selectedServicePrincipalData?.value,
-    searchTerm
+    debouncedSearchTerm
   );
 
     if (appRolesAssignedToIsLoading) {

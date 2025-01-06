@@ -23,6 +23,7 @@ import { samlStatusColumns } from "./SamlStatusGrid.columns";
 import { fetcher, ODataResponse } from "@/lib/utils/msGraphFetcher";
 import { graphConfig } from "@/lib/msalConfig";
 import { SkeletonGrid } from "../SkeletonGrid";
+import { useDebouncedValue } from "@/lib/utils/common";
 
 function useAuthenticatedSWR<T>(url: string, isAuthenticated: boolean) {
   return useSWR<ODataResponse<T>>(isAuthenticated ? url : null, fetcher);
@@ -54,6 +55,7 @@ function useFilteredSamlStatus(
 export default function SamlStatusGrid() {
   const isAuthenticated = useIsAuthenticated();
   const [searchTerm, setSearchTerm] = useState("");
+  const debouncedSearchTerm = useDebouncedValue(searchTerm, 300);
   const onSearchChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setSearchTerm(e.target.value);
 
@@ -74,7 +76,7 @@ export default function SamlStatusGrid() {
   const filteredItems = useFilteredSamlStatus(
     isAuthenticated,
     samlStatusData?.value,
-    searchTerm
+    debouncedSearchTerm
   );
 
   if (samlStatusIsLoading) {
