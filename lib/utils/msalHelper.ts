@@ -17,10 +17,8 @@ export async function acquireGraphAccessToken() {
     return response.accessToken;
   } catch (error) {
      if (error instanceof InteractionRequiredAuthError) {
-       msalInstance.acquireTokenRedirect({
-         ...loginRequest,
-         account: account
-       });
+       msalInstance.clearCache();
+       handleSignIn();
     } else {
       console.error('Failed to acquire token silently', error);
     }
