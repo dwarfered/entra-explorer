@@ -1,14 +1,13 @@
-import { AccountInfo, InteractionRequiredAuthError } from "@azure/msal-browser";
-import { loginRequest, msalInstance } from "@/lib/msalConfig";
-import { acquireGraphAccessToken } from "./msalHelper";
+import { InteractionRequiredAuthError } from "@azure/msal-browser";
+import { msalInstance } from "@/lib/msalConfig";
+import { acquireGraphAccessToken, handleSignIn } from "./msalHelper";
 
 export interface ODataResponse<T> {
-  "@odata.context": string,
-  value: T[]
+  "@odata.context": string;
+  value: T[];
 }
 
 export async function fetcher(...args: Parameters<typeof fetch>) {
-
   // fake delay
   // await new Promise(resolve => setTimeout(resolve, 5000));
 
@@ -24,15 +23,13 @@ export async function fetcher(...args: Parameters<typeof fetch>) {
 
   const response = await fetch(...args).catch((error) => {
     if (error instanceof InteractionRequiredAuthError) {
-      msalInstance.acquireTokenRedirect({
-        ...loginRequest,
-        account: msalInstance.getActiveAccount() as AccountInfo,
-      });
+      msalInstance.clearCache();
+      handleSignIn();
     }
   });
 
   if (!response) {
-    throw new Error('No response from fetch');
+    throw new Error("No response from fetch");
   }
 
   const contentType = response.headers.get("Content-Type");
@@ -40,8 +37,11 @@ export async function fetcher(...args: Parameters<typeof fetch>) {
   if (contentType?.includes("application/json")) {
     const data = await response.json();
     // Handle @odata.nextLink for pagination
-    if (data['@odata.nextLink'] && typeof data['@odata.nextLink'] === 'string') {
-      const nextPageData = await fetcher(data['@odata.nextLink']);
+    if (
+      data["@odata.nextLink"] &&
+      typeof data["@odata.nextLink"] === "string"
+    ) {
+      const nextPageData = await fetcher(data["@odata.nextLink"]);
       data.value = [...(data.value || []), ...(nextPageData.value || [])];
     }
     return data;
