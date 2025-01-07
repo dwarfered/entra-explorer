@@ -34,6 +34,7 @@ import { appRoleColumns } from "./AppRolePermissionsGrid.columns";
 import { findEntraOpsClassificationByPermission } from "@/lib/utils/entraOpsHelper";
 import { SkeletonGrid } from "@/components/SkeletonGrid";
 import useDebounce from "@/lib/utils/common";
+import ExportCSVButton from "@/components/ExportCSVButton";
 
 function useAuthenticatedSWR<T>(url: string, isAuthenticated: boolean) {
   return useSWR<ODataResponse<T>>(isAuthenticated ? url : null, fetcher);
@@ -192,6 +193,8 @@ export default function AppRolePermissionsGrid() {
           placeholder="Filter by permission"
         />
       </div>
+
+      <ExportCSVButton<GridItem> data={filteredItems} disabled={filteredItems.length === 0} fileName="appRolePermissions.csv" />
 
       <DataGrid
         size="small"
