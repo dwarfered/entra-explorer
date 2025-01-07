@@ -85,7 +85,6 @@ export default function SignOutButton() {
             appearance="primary"
             style={{ minWidth: 0 }}
           >
-            <div className={styles.buttonContent}>
               <div
                 className={styles.textContainer}
                 style={{ flex: 1, overflow: "hidden" }}
@@ -101,7 +100,6 @@ export default function SignOutButton() {
                 name={account?.name}
                 image={imageSrc ? { src: imageSrc } : undefined}
               />
-            </div>
           </Button>
         </MenuTrigger>
         <MenuPopover>
