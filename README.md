@@ -6,6 +6,12 @@ Microsoft Entra.
 
 [Entra Explorer](https://www.entraexplorer.com)
 
+## Updates
+
+- All Application Registrations that include certificates and secrets.
+- All Enterprise Applications with assigned application roles.
+- All Enterprise Applications configured for SAML SSO, along with their expiration dates.
+
 ## Solution Overview
 
 The solution is a single-page application (SPA) hosted on GitHub Pages,
@@ -17,12 +23,6 @@ side.
 <p align="center">
   <img src="public/entra-explorer.png" width="600">
 </p>
-
-## Updates
-
-- All Application Registrations that include certificates and secrets.
-- All Enterprise Applications with assigned application roles.
-- All Enterprise Applications configured for SAML SSO, along with their expiration dates.
 
 ## Running your own instance of Entra Explorer
 
