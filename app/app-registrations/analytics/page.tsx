@@ -29,6 +29,7 @@ export default function Page() {
       <h1 className={styles.h1}>
         <Body1>Application Registration analytics.</Body1>
       </h1>
+      <h2>Creations</h2>
       <AppRegAnalytics />
     </>
   );
