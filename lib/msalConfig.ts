@@ -57,10 +57,12 @@ export const graphConfig = {
     "https://graph.microsoft.com/v1.0/me/photos/48x48/$value",
   graphAppCredentialsEndpoint:
     "https://graph.microsoft.com/v1.0/applications?$select=appId,displayName,keyCredentials,passwordCredentials&$top=999",
+  graphAppRegCreationsEndpoint:
+    "https://graph.microsoft.com/v1.0/applications?$select=appId,displayName,createdDateTime,signInAudience&$top=999",
   graphSamlExpiryEndpoint:
     "https://graph.microsoft.com/beta/servicePrincipals?$select=preferredTokenSigningKeyEndDateTime,appDisplayName,id,appId&$top=999&$filter=preferredTokenSigningKeyEndDateTime ge 2021-01-02T12:00:00Z",
-    graphGetServicePrincipal:
+  graphGetServicePrincipal:
     "https://graph.microsoft.com/v1.0/servicePrincipals",
-  };
+};
 
 export const msalInstance = new PublicClientApplication(msalConfig);
