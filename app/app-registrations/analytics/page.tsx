@@ -1,6 +1,6 @@
 "use client";
 
-import AppRegCreations from "@/components/app-registrations/creations/AppRegCreations";
+import AppRegAnalytics from "@/components/app-registrations/analytics/AppRegAnalytics";
 import { useGlobalStyles } from "@/lib/utils/fluentuiHelper";
 import {
   Breadcrumb,
@@ -24,12 +24,12 @@ export default function Page() {
           <BreadcrumbButton current>App Registrations</BreadcrumbButton>
         </BreadcrumbItem>
       </Breadcrumb>
-      <Title3> Creations</Title3>
+      <Title3> Analytics</Title3>
 
       <h1 className={styles.h1}>
-        <Body1>All Application Registrations.</Body1>
+        <Body1>Application Registration analytics.</Body1>
       </h1>
-      <AppRegCreations />
+      <AppRegAnalytics />
     </>
   );
 }
