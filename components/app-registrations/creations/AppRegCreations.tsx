@@ -38,19 +38,19 @@ function useFilter(
 ) {
   return useMemo(() => {
     const normalizedSearchTerm = searchTerm.toLowerCase();
-    const processSamlStatus = (samlStatus: GridItem[]) =>
-      samlStatus.filter((item) =>
+    const processData = (data: GridItem[]) =>
+      data.filter((item) =>
         item.displayName.toLowerCase().startsWith(normalizedSearchTerm)
       );
 
     if (!isAuthenticated) {
-      const samlStatuses = generateItems();
-      return processSamlStatus(samlStatuses);
+      const items = generateItems();
+      return processData(items);
     }
 
     if (!data) return [];
 
-    return processSamlStatus(data);
+    return processData(data);
   }, [isAuthenticated, data, searchTerm]);
 }
 
