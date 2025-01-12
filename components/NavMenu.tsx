@@ -59,6 +59,32 @@ export default function NavMenu() {
             <AccordionPanel>
               <Button
                 icon={
+                  pathname === "/app-registrations/creations" ? (
+                    <DividerTallFilled
+                      style={{
+                        transform: "scaleX(2)",
+                      }}
+                    />
+                  ) : undefined
+                }
+                onClick={() =>
+                  router.push("/app-registrations/creations")
+                }
+                shape="square"
+                appearance="subtle"
+                style={{
+                  width: "100%",
+                  justifyContent: "flex-start",
+                  display: "flex",
+                  ...(pathname === "/app-registrations/creations"
+                    ? activeStyle
+                    : {}),
+                }}
+              >
+                <Body1>Creations</Body1>
+              </Button>
+              <Button
+                icon={
                   pathname === "/app-registrations/certificates-and-secrets" ? (
                     <DividerTallFilled
                       style={{
