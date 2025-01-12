@@ -36,6 +36,11 @@ export default function Home() {
         </li>
       </ul>
 
+      <h3>2025-01-12</h3>
+      <ul>
+        <li>Application Registration analytics (creations)</li>
+      </ul>
+
       <h2>Solution Overview</h2>
 
       <div style={{ textAlign: "center" }}>

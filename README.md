@@ -12,6 +12,9 @@ Microsoft Entra.
 - All Enterprise Applications with assigned application roles.
 - All Enterprise Applications configured for SAML SSO, along with their expiration dates.
 
+### 12-01-2025
+- Application Registration analytics (creations)
+
 ## Solution Overview
 
 The solution is a single-page application (SPA) hosted on GitHub Pages,
