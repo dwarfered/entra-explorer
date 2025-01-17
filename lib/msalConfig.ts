@@ -45,7 +45,7 @@ export const msalConfig: Configuration = {
   },
 };
 
-// Add here scopes for id token to be used at MS Identity Platform endpoints.
+// Initial scopes
 export const loginRequest: PopupRequest = {
   scopes: ["User.Read", "Application.Read.All"],
 };
