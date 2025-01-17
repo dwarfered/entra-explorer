@@ -1,5 +1,5 @@
 import { loginRequest, msalInstance } from "@/lib/msalConfig";
-import { InteractionRequiredAuthError } from "@azure/msal-browser";
+import { AccountInfo, AuthenticationResult, InteractionRequiredAuthError } from "@azure/msal-browser";
 
 export async function acquireGraphAccessToken() {
   const account = msalInstance.getActiveAccount();
@@ -37,3 +37,26 @@ export function handleSignOut() {
     console.error(`loginRedirect failed: ${e}`);
   });
 }
+
+// Checks if the current users' access token contains a required scope. 
+// Used for incremental scope checks (does user have Sites.Read.All etc) or another perm a page may require.
+export const hasScopes = async (
+  requiredScopes: string[],
+  account: AccountInfo | null
+): Promise<boolean> => {
+  if (!account) {
+    return false;
+  }
+
+  try {
+    const response: AuthenticationResult = await msalInstance.acquireTokenSilent({
+      account,
+      scopes: requiredScopes,
+    });
+
+    const tokenScopes = response.scopes || [];
+    return requiredScopes.every((scope) => tokenScopes.includes(scope));
+  } catch {
+    return false;
+  }
+};
