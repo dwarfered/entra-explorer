@@ -41,13 +41,6 @@ function getExpiredCredentialsCount(item: GridItem): number {
   );
 }
 
-function getLongLivedCredentialsCount(item: GridItem): number {
-  return (
-    item.longLivedKeyCredentials.length +
-    item.longLivedPasswordCredentials.length
-  );
-}
-
 function getWarningDates(item: GridItem): Date[] {
   const allWarningTimes = [
     ...item.warningPasswordCredentials.map((x) =>
@@ -63,6 +56,24 @@ function getWarningDates(item: GridItem): Date[] {
 
 function getEarliestWarningDate(item: GridItem): Date | null {
   const dates = getWarningDates(item);
+  return dates.length > 0 ? dates[0] : null;
+}
+
+function getLongLivedDates(item: GridItem): Date[] {
+  const allLongLivedDates = [
+    ...(item.longLivedPasswordCredentials || []).map(
+      (x) => new Date(x.endDateTime)
+    ),
+    ...(item.longLivedKeyCredentials || []).map((x) => new Date(x.endDateTime)),
+  ];
+
+  const validDates = allLongLivedDates.filter((date) => !isNaN(date.getTime()));
+
+  return validDates.sort((a, b) => b.getTime() - a.getTime());
+}
+
+function getLatestLongLivedDate(item: GridItem): Date | null {
+  const dates = getLongLivedDates(item);
   return dates.length > 0 ? dates[0] : null;
 }
 
@@ -105,7 +116,7 @@ export const credentialStatusColumns = (
         );
       }
 
-      if (activeCount === 1) {
+      if (activeCount === 1 || activeCount === 2) {
         return (
           <TableCellLayout
             media={<CheckmarkCircleFilled {...validIconStyleProps} />}
@@ -132,13 +143,7 @@ export const credentialStatusColumns = (
       const expiredCount = getExpiredCredentialsCount(item);
 
       if (expiredCount === 0) {
-        return (
-          <TableCellLayout
-            media={ undefined}
-          >
-            -
-          </TableCellLayout>
-        );
+        return <TableCellLayout media={undefined}>-</TableCellLayout>;
       }
 
       return (
@@ -151,25 +156,28 @@ export const credentialStatusColumns = (
 
   createTableColumn<GridItem>({
     columnId: "longLived",
-    compare: (a, b) =>
-      getLongLivedCredentialsCount(a) - getLongLivedCredentialsCount(b),
+    compare: (a, b) => {
+      const latestA = getLatestLongLivedDate(a);
+      const latestB = getLatestLongLivedDate(b);
+
+      // Handle null values (no valid dates)
+      if (!latestA && !latestB) return 0;
+      if (!latestA) return 1; // Put nulls at the "bottom"
+      if (!latestB) return -1;
+
+      return latestA.getTime() - latestB.getTime();
+    },
     renderHeaderCell: () => "Long-lived",
     renderCell: (item) => {
-      const count = getLongLivedCredentialsCount(item);
+      const longLivedDates = getLongLivedDates(item);
 
-      if (count === 0) {
-        return (
-          <TableCellLayout
-            media={ undefined }
-          >
-            -
-          </TableCellLayout>
-        );
+      if (longLivedDates.length === 0) {
+        return <TableCellLayout media={undefined}>-</TableCellLayout>;
       }
 
       return (
         <TableCellLayout media={<ErrorCircleFilled {...errorIconStyleProps} />}>
-          {count}
+          <DateList dates={longLivedDates} />
         </TableCellLayout>
       );
     },
@@ -194,18 +202,13 @@ export const credentialStatusColumns = (
       const expiringCount = warningDates.length;
 
       if (expiringCount === 0) {
-        return (
-          <TableCellLayout
-          >
-            -
-          </TableCellLayout>
-        );
+        return <TableCellLayout>-</TableCellLayout>;
       }
 
       return (
         <TableCellLayout media={<WarningFilled {...warningIconStyleProps} />}>
-        <DateList dates={warningDates} />
-      </TableCellLayout>
+          <DateList dates={warningDates} />
+        </TableCellLayout>
       );
     },
   }),
