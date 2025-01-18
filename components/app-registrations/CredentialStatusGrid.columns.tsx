@@ -105,7 +105,7 @@ export const credentialStatusColumns = (
         );
       }
 
-      if (activeCount === 1) {
+      if (activeCount === 1 || activeCount === 2) {
         return (
           <TableCellLayout
             media={<CheckmarkCircleFilled {...validIconStyleProps} />}
