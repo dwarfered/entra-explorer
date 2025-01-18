@@ -109,16 +109,16 @@ export default function SamlStatusGrid() {
     );
   }
 
-  // type SortDirection = "ascending" | "descending";
-  // interface SortState {
-  //   sortColumn?: string;
-  //   sortDirection: SortDirection;
-  // }
+  type SortDirection = "ascending" | "descending";
+  interface SortState {
+    sortColumn: string | undefined;
+    sortDirection: SortDirection;
+  }
 
-  // const defaultSortState: SortState = {
-  //   sortColumn: "warnCredential",
-  //   sortDirection: "ascending",
-  // };
+  const newSortState: SortState = {
+    sortColumn: "expiry",
+    sortDirection: "ascending",
+  };
 
   return (
     <div>
@@ -153,7 +153,7 @@ export default function SamlStatusGrid() {
         columns={columns}
         sortable
         getRowId={(item) => item.displayName}
-        // defaultSortState={defaultSortState}
+        defaultSortState={newSortState}
         style={{ marginBottom: "10px" }}
       >
         <DataGridHeader>
