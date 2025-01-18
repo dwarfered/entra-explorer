@@ -41,13 +41,6 @@ function getExpiredCredentialsCount(item: GridItem): number {
   );
 }
 
-function getLongLivedCredentialsCount(item: GridItem): number {
-  return (
-    item.longLivedKeyCredentials.length +
-    item.longLivedPasswordCredentials.length
-  );
-}
-
 function getWarningDates(item: GridItem): Date[] {
   const allWarningTimes = [
     ...item.warningPasswordCredentials.map((x) =>
@@ -68,22 +61,20 @@ function getEarliestWarningDate(item: GridItem): Date | null {
 
 function getLongLivedDates(item: GridItem): Date[] {
   const allLongLivedDates = [
-    ...item.longLivedPasswordCredentials.map((x) =>
-      new Date(x.endDateTime).getTime()
+    ...(item.longLivedPasswordCredentials || []).map(
+      (x) => new Date(x.endDateTime)
     ),
-    ...item.longLivedKeyCredentials.map((x) =>
-      new Date(x.endDateTime).getTime()
-    ),
-  ].filter((time) => !isNaN(time)); // Filter out invalid dates
+    ...(item.longLivedKeyCredentials || []).map((x) => new Date(x.endDateTime)),
+  ];
 
-  return allLongLivedDates
-    .map((t) => new Date(t))
-    .sort((a, b) => a.getTime() - b.getTime());
+  const validDates = allLongLivedDates.filter((date) => !isNaN(date.getTime()));
+
+  return validDates.sort((a, b) => b.getTime() - a.getTime());
 }
 
 function getLatestLongLivedDate(item: GridItem): Date | null {
   const dates = getLongLivedDates(item);
-  return dates.length > 0 ? dates[dates.length - 1] : null;
+  return dates.length > 0 ? dates[0] : null;
 }
 
 export const credentialStatusColumns = (
@@ -179,7 +170,6 @@ export const credentialStatusColumns = (
     renderHeaderCell: () => "Long-lived",
     renderCell: (item) => {
       const longLivedDates = getLongLivedDates(item);
-      const longLivedCount = getLongLivedDates.length;
 
       if (longLivedDates.length === 0) {
         return <TableCellLayout media={undefined}>-</TableCellLayout>;
