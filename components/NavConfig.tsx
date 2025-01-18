@@ -25,13 +25,13 @@ export const navConfig: NavItem[] = [
     showActiveIcon: false, 
     children: [
       {
-        label: "Analytics",
-        route: "/app-registrations/analytics",
+        label: "Certificates & secrets",
+        route: "/app-registrations/certificates-and-secrets",
         showActiveIcon: true,
       },
       {
-        label: "Certificates & secrets",
-        route: "/app-registrations/certificates-and-secrets",
+        label: "Creations",
+        route: "/app-registrations/creations",
         showActiveIcon: true,
       },
     ],

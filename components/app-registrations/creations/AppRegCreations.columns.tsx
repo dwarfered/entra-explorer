@@ -10,7 +10,7 @@ import {
   FluentIconsProps,
   WarningFilled,
 } from "@fluentui/react-icons";
-import { GridItem } from "./AppRegAnalytics.data-model";
+import { GridItem } from "./AppRegCreations.data-model";
 
 const validIconStyleProps: FluentIconsProps = {
   primaryFill: tokens.colorPaletteLightGreenForeground1,

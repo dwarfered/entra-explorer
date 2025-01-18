@@ -22,8 +22,8 @@ import { fetcher, ODataResponse } from "@/lib/utils/msGraphFetcher";
 import { graphConfig } from "@/lib/msalConfig";
 
 import useDebounce from "@/lib/utils/common";
-import { generateItems, GridItem } from "./AppRegAnalytics.data-model";
-import { tableColumns } from "./AppRegAnalytics.columns";
+import { generateItems, GridItem } from "./AppRegCreations.data-model";
+import { tableColumns } from "./AppRegCreations.columns";
 import { SkeletonGrid } from "@/components/SkeletonGrid";
 import {
   CartesianGrid,
@@ -121,7 +121,7 @@ function useFilterForLineChart(
   }, [isAuthenticated, data, searchTerm]);
 }
 
-export default function AppRegAnalytics() {
+export default function AppRegCreations() {
   const isAuthenticated = useIsAuthenticated();
 
   const [searchTerm, setSearchTerm] = useState("");
