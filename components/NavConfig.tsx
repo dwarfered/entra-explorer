@@ -1,0 +1,57 @@
+
+import { HomeRegular } from "@fluentui/react-icons";
+import IconAppRegistrations from "./styling/icons/IconAppRegistrations";
+import IconEnterpriseApps from "./styling/icons/IconEnterpriseApps";
+
+interface NavItem {
+  label: string;
+  route: string;
+  icon?: React.ReactNode;         // Icon for the header or button
+  showActiveIcon?: boolean;       // Whether to show the active divider icon
+  children?: NavItem[];           // Sub-items if this item has an accordion
+}
+
+export const navConfig: NavItem[] = [
+  {
+    label: "Home",
+    route: "/",
+    icon: <HomeRegular />,
+    showActiveIcon: false,
+  },
+  {
+    label: "App Registrations",
+    route: "/app-registrations", 
+    icon: <IconAppRegistrations />,
+    showActiveIcon: false, 
+    children: [
+      {
+        label: "Analytics",
+        route: "/app-registrations/analytics",
+        showActiveIcon: true,
+      },
+      {
+        label: "Certificates & secrets",
+        route: "/app-registrations/certificates-and-secrets",
+        showActiveIcon: true,
+      },
+    ],
+  },
+  {
+    label: "Enterprise Applications",
+    route: "/enterprise-applications",
+    icon: <IconEnterpriseApps />,
+    showActiveIcon: false,
+    children: [
+      {
+        label: "App role permissions",
+        route: "/enterprise-applications/app-role-permissions",
+        showActiveIcon: true,
+      },
+      {
+        label: "SAML certificate status",
+        route: "/enterprise-applications/saml-certificate-expiry-status",
+        showActiveIcon: true,
+      },
+    ],
+  },
+];

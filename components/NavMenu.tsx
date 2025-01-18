@@ -1,190 +1,63 @@
 import {
-  Accordion,
-  AccordionHeader,
-  AccordionItem,
-  AccordionPanel,
-  Body1,
-  Body1Strong,
-  Button,
-  Divider,
-  tokens,
   Toolbar,
   ToolbarGroup,
+  Accordion,
+  AccordionItem,
+  AccordionHeader,
+  AccordionPanel,
+  Divider,
+  Body1Strong,
 } from "@fluentui/react-components";
-import { DividerTallFilled, HomeRegular } from "@fluentui/react-icons";
-import { usePathname, useRouter } from "next/navigation";
-import IconAppRegistrations from "./styling/icons/IconAppRegistrations";
-import IconEnterpriseApps from "./styling/icons/IconEnterpriseApps";
+
+import { NavButton } from "./NavButton";
+import { navConfig } from "./NavConfig";
 
 export default function NavMenu() {
-  const router = useRouter();
-
-  const pathname = usePathname(); // Get the current route
-
-  const activeStyle = {
-    backgroundColor: tokens.colorNeutralBackground2,
-    color: tokens.colorNeutralForeground2BrandSelected,
-  };
-
   return (
-    <Toolbar aria-label="with Separeted Groups">
+    <Toolbar aria-label="Navigation Menu">
       <ToolbarGroup role="presentation" style={{ width: "100%" }}>
-        <Button
-          onClick={() => {
-            router.push("/");
-          }}
-          shape="square"
-          appearance="subtle"
-          icon={<HomeRegular />}
-          style={{
-            width: "100%",
-            justifyContent: "flex-start", // This aligns the button content to the left
-            display: "flex", // Ensures flexbox layout for content alignment,
-            ...(pathname === "/" ? activeStyle : {}),
-          }}
-        >
-          <Body1Strong> Home</Body1Strong>
-        </Button>
-        <Divider />
+        {navConfig.map((item, index) => {
+          if (item.children && item.children.length > 0) {
+            return (
+              <Accordion key={index} defaultOpenItems="1">
+                <AccordionItem value="1">
+                  <AccordionHeader
+                    icon={{
+                      as: "div",
+                      children: item.icon,
+                    }}
+                    expandIconPosition="end"
+                  >
+                    <Body1Strong>{item.label}</Body1Strong>
+                  </AccordionHeader>
+                  <AccordionPanel>
+                    {item.children.map((child, childIndex) => (
+                      <NavButton
+                        key={childIndex}
+                        label={child.label}
+                        route={child.route}
+                        showActiveIcon={child.showActiveIcon}
+                      />
+                    ))}
+                  </AccordionPanel>
+                </AccordionItem>
+              </Accordion>
+            );
+          }
 
-        {/* <AuthenticatedTemplate> */}
-        <Accordion defaultOpenItems="1">
-          <AccordionItem value="1">
-            <AccordionHeader
-              icon={<IconAppRegistrations />}
-              expandIconPosition="end"
-            >
-              <Body1Strong>App Registrations</Body1Strong>
-            </AccordionHeader>
-            <AccordionPanel>
-              <Button
-                icon={
-                  pathname === "/app-registrations/analytics" ? (
-                    <DividerTallFilled
-                      style={{
-                        transform: "scaleX(2)",
-                      }}
-                    />
-                  ) : undefined
-                }
-                onClick={() =>
-                  router.push("/app-registrations/analytics")
-                }
-                shape="square"
-                appearance="subtle"
-                style={{
-                  width: "100%",
-                  justifyContent: "flex-start",
-                  display: "flex",
-                  ...(pathname === "/app-registrations/analytics"
-                    ? activeStyle
-                    : {}),
-                }}
-              >
-                <Body1>Analytics</Body1>
-              </Button>
-              <Button
-                icon={
-                  pathname === "/app-registrations/certificates-and-secrets" ? (
-                    <DividerTallFilled
-                      style={{
-                        transform: "scaleX(2)",
-                      }}
-                    />
-                  ) : undefined
-                }
-                onClick={() =>
-                  router.push("/app-registrations/certificates-and-secrets")
-                }
-                shape="square"
-                appearance="subtle"
-                style={{
-                  width: "100%",
-                  justifyContent: "flex-start",
-                  display: "flex",
-                  ...(pathname === "/app-registrations/certificates-and-secrets"
-                    ? activeStyle
-                    : {}),
-                }}
-              >
-                <Body1>Certificates & secrets</Body1>
-              </Button>
-            </AccordionPanel>
-          </AccordionItem>
-        </Accordion>
-        {/* </AuthenticatedTemplate> */}
-        <Accordion defaultOpenItems="1">
-          <AccordionItem value="1">
-            <AccordionHeader
-              icon={<IconEnterpriseApps />}
-              expandIconPosition="end"
-            >
-              <Body1Strong>Enterprise Applications</Body1Strong>
-            </AccordionHeader>
-            <AccordionPanel>
-              <Button
-                icon={
-                  pathname ===
-                  "/enterprise-applications/app-role-permissions" ? (
-                    <DividerTallFilled
-                      style={{
-                        transform: "scaleX(2)",
-                      }}
-                    />
-                  ) : undefined
-                }
-                onClick={() =>
-                  router.push("/enterprise-applications/app-role-permissions")
-                }
-                shape="square"
-                appearance="subtle"
-                style={{
-                  width: "100%",
-                  justifyContent: "flex-start",
-                  display: "flex",
-                  ...(pathname ===
-                  "/enterprise-applications/app-role-permissions"
-                    ? activeStyle
-                    : {}),
-                }}
-              >
-                <Body1>App role permissions</Body1>
-              </Button>
-              <Button
-                icon={
-                  pathname ===
-                  "/enterprise-applications/saml-certificate-expiry-status" ? (
-                    <DividerTallFilled
-                      style={{
-                        transform: "scaleX(2)",
-                      }}
-                    />
-                  ) : undefined
-                }
-                onClick={() =>
-                  router.push(
-                    "/enterprise-applications/saml-certificate-expiry-status"
-                  )
-                }
-                shape="square"
-                appearance="subtle"
-                style={{
-                  width: "100%",
-                  justifyContent: "flex-start",
-                  display: "flex",
-                  ...(pathname ===
-                  "/enterprise-applications/saml-certificate-expiry-status"
-                    ? activeStyle
-                    : {}),
-                }}
-              >
-                <Body1>SAML certificate status</Body1>
-              </Button>
-            </AccordionPanel>
-          </AccordionItem>
-        </Accordion>
+          return (
+            <div key={index}>
+              <NavButton
+                label={item.label}
+                route={item.route}
+                icon={item.icon}
+                showActiveIcon={item.showActiveIcon}
+              />
+              {index < navConfig.length - 1 && <Divider />}
+            </div>
+          );
+        })}
       </ToolbarGroup>
-      <ToolbarGroup role="presentation"></ToolbarGroup>
     </Toolbar>
   );
 }
