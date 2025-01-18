@@ -44,6 +44,8 @@ export function generateApplications(): Application[] {
 
   const twoYearsFromNow = new Date();
   twoYearsFromNow.setFullYear(now.getFullYear() + 2);
+  const fourYearsFromNow = new Date();
+  fourYearsFromNow.setFullYear(now.getFullYear() + 4);
 
   const twoMonthsFromNow = new Date();
   twoMonthsFromNow.setMonth(now.getMonth() + 2);
@@ -70,7 +72,7 @@ export function generateApplications(): Application[] {
           secretText: null,
           customKeyIdentifier: null,
           keyId: "password-id-long-lived",
-          endDateTime: twoYearsFromNow.toISOString(),
+          endDateTime: fourYearsFromNow.toISOString(),
           hint: "LLP",
           displayName: "Long Lived Password",
         },
