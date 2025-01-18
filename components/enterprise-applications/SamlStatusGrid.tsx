@@ -24,6 +24,7 @@ import { fetcher, ODataResponse } from "@/lib/utils/msGraphFetcher";
 import { graphConfig } from "@/lib/msalConfig";
 import { SkeletonGrid } from "../SkeletonGrid";
 import useDebounce from "@/lib/utils/common";
+import ExportCSVButton from "../ExportCSVButton";
 
 function useAuthenticatedSWR<T>(url: string, isAuthenticated: boolean) {
   return useSWR<ODataResponse<T>>(isAuthenticated ? url : null, fetcher);
@@ -146,6 +147,8 @@ export default function SamlStatusGrid() {
           placeholder="Filter by display name"
         />
       </div>
+
+      <ExportCSVButton<SamlStatus> data={filteredItems} disabled={filteredItems.length === 0} fileName="samlExpiries.csv" />
 
       <DataGrid
         size="small"
