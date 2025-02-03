@@ -1,16 +1,23 @@
-<xml version="1.0" encoding="UTF-8">
-    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-        <url>
-            <loc>https://www.entraexplorer.com/app-registrations/certificates-and-secrets</loc>
-            <lastmod>2025-05-01</lastmod>
-        </url>
-        <url>
-            <loc>https://www.entraexplorer.com/enterprise-applications/app-role-permissions</loc>
-            <lastmod>2025-05-01</lastmod>
-        </url>
-           <url>
-            <loc>https://www.entraexplorer.com/enterprise-applications/saml-certificate-expiry-status</loc>
-            <lastmod>2025-05-01</lastmod>
-        </url>
-    </urlset>
-</xml>
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>http://www.entraexplorer.com/</loc>
+        <lastmod>2025-02-01</lastmod>
+    </url>
+    <url>
+        <loc>https://www.entraexplorer.com/app-registrations/certificates-and-secrets</loc>
+        <lastmod>2025-02-01</lastmod>
+    </url>
+    <url>
+        <loc>https://www.entraexplorer.com/app-registrations/creations</loc>
+        <lastmod>2025-02-01</lastmod>
+    </url>
+    <url>
+        <loc>https://www.entraexplorer.com/enterprise-applications/app-role-permissions</loc>
+        <lastmod>2025-02-01</lastmod>
+    </url>
+    <url>
+        <loc>https://www.entraexplorer.com/enterprise-applications/saml-certificate-expiry-status</loc>
+        <lastmod>2025-02-01</lastmod>
+    </url>
+</urlset>
