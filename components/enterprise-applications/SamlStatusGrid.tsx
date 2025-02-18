@@ -128,7 +128,7 @@ export default function SamlStatusGrid() {
           <InfoLabel
             info={<>Until sign-in this screen returns sample data. </>}
           >
-            <Subtitle2>Demo Mode</Subtitle2>
+            <Subtitle2>Example Mode</Subtitle2>
           </InfoLabel>
         </div>
       )}
