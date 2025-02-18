@@ -165,14 +165,42 @@ export default function AppRolePermissionsGrid() {
     );
   }
 
+  type SortDirection = "ascending" | "descending";
+  interface SortState {
+    sortColumn: string | undefined;
+    sortDirection: SortDirection;
+  }
+
+  const defaultSortState: SortState = {
+    sortColumn: "createdDateTime",
+    sortDirection: "descending",
+  };
+
   return (
     <div>
+
+<div>
+        <Caption1 style={{ margin: "6px" }}>
+          EntraOps Classifications
+          <InfoLabel
+            info={
+              <Link
+                target="_blank"
+                href={"https://github.com/Cloud-Architekt/AzurePrivilegedIAM"}
+              >
+                Courtesy Cloud-Architekt (Thomas Naunheim)
+              </Link>
+            }
+          ></InfoLabel>
+        </Caption1>
+      </div>
+
       {!isAuthenticated && (
         <div style={{ margin: "6px" }}>
           <InfoLabel
             info={<>Until sign-in this screen returns sample data. </>}
           >
-            <Subtitle2>Demo Mode</Subtitle2>
+            <Subtitle2>Example Mode</Subtitle2>
           </InfoLabel>
         </div>
       )}
@@ -194,6 +222,8 @@ export default function AppRolePermissionsGrid() {
         />
       </div>
 
+   
+
       <ExportCSVButton<GridItem> data={filteredItems} disabled={filteredItems.length === 0} fileName="appRolePermissions.csv" />
 
       <DataGrid
@@ -202,7 +232,7 @@ export default function AppRolePermissionsGrid() {
         columns={columns}
         sortable
         getRowId={(item) => item.displayName}
-        // defaultSortState={defaultSortState}
+        defaultSortState={defaultSortState}
         style={{ marginBottom: "10px" }}
       >
         <DataGridHeader>
@@ -222,22 +252,6 @@ export default function AppRolePermissionsGrid() {
           )}
         </DataGridBody>
       </DataGrid>
-
-      <div>
-        <Caption1 style={{ margin: "6px" }}>
-          EntraOps Classifications
-          <InfoLabel
-            info={
-              <Link
-                target="_blank"
-                href={"https://github.com/Cloud-Architekt/AzurePrivilegedIAM"}
-              >
-                Courtesy Cloud-Architekt (Thomas Naunheim)
-              </Link>
-            }
-          ></InfoLabel>
-        </Caption1>
-      </div>
     </div>
   );
 }
