@@ -1,10 +1,13 @@
 # Entra Explorer
 
+## Deprecated source, to be updated
+[https://github.com/dwarfered/insights.identityworkbench.com]
+
 Entra Explorer is an open-source solution that leverages Microsoft
 Graph to help administrators retrieve and visualize data from
 Microsoft Entra.
 
-## Deprecated source, to be updated from react-spa-msal-entra-id-quickstart.
+
 
 [Entra Explorer](https://www.entraexplorer.com)
 
